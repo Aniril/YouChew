@@ -2,12 +2,14 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.ComponentModel.DataAnnotations;
 
 namespace YouChew.Models
 {
 	public class Critique
 	{
-		public Guid id { get; set; }
+		[Key]
+		public Guid ID { get; set; }
 		public DateTime dateTime { get; set; }
 		public double? rating { get; set; }
 		public string review { get; set; }

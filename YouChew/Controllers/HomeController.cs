@@ -10,21 +10,21 @@ namespace YouChew.Controllers
 	{
 		public ActionResult Index()
 		{
-			ViewBag.Message = "Modify this template to jump-start your ASP.NET MVC application.";
+			ViewBag.Message = "Welcome to YouChew, a place to talk about food";
 
 			return View();
 		}
 
 		public ActionResult About()
 		{
-			ViewBag.Message = "Your app description page.";
+			ViewBag.Message = "Simple about section will include contributing developers";
 
 			return View();
 		}
 
 		public ActionResult Contact()
 		{
-			ViewBag.Message = "Your contact page.";
+			ViewBag.Message = "Include contact stuff here";
 
 			return View();
 		}

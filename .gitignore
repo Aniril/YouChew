@@ -72,13 +72,9 @@ _ReSharper.YouChew/
 .builds
 *.dotCover
 bin/
-
 obj/
-
 [Tt]humbs.db 
-
 *.suo
-
 *.user
 
 

@@ -170,6 +170,7 @@
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountModels.cs" />
     <Compile Include="Models\Critique.cs" />
+    <Compile Include="Models\ORM\SiteInit.cs" />
     <Compile Include="Models\Restaurant.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Models\ORM\SiteContext.cs" />
