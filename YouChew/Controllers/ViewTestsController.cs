@@ -11,10 +11,13 @@ namespace YouChew.Controllers
         //
         // GET: /ViewTests/
 
-        public ActionResult MapsTest()
+        public ActionResult MapsTest(string latitude, string longitude)
         {
             ViewBag.Message = "This is a page for testing things. Do not be afraid.";
             
+            ViewBag.Latitude = latitude;
+            ViewBag.Longitude = longitude;
+
             return View();
         }
 

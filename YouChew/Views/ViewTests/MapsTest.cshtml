@@ -11,7 +11,7 @@
 
 <script type="text/javascript">
     function InitializeMap() {
-        var latlng = new google.maps.LatLng(-34.397, 150.644);
+        var latlng = new google.maps.LatLng(@ViewBag.Latitude, @ViewBag.Longitude);
         var myOptions = {
             zoom: 8,
             center: latlng,
@@ -21,7 +21,7 @@
         var marker = new google.maps.Marker
         (
             {
-                position: new google.maps.LatLng(-34.397, 150.644),
+                position: new google.maps.LatLng(@ViewBag.Latitude, @ViewBag.Longitude),
                 map: map,
                 title: 'Click me'
             }
@@ -30,4 +30,13 @@
     window.onload = InitializeMap;
 </script>
 
-<div id ="map"   style="width: 304px; top: 50px; left: 50px; position: relative; height: 238px"></div>
+<div id ="map"   style="width: 304px; position: relative; height: 238px"></div>
+
+<form action="MapsTest" method="get">
+    Enter Latitude: <input type="text" name="latitude" /><br />
+    Enter Longitude: <input type="text" name="longitude" /><br />
+    <input type="submit" />
+</form>
+
+Lat: @ViewBag.Latitude<br />
+Long: @ViewBag.Longitude
