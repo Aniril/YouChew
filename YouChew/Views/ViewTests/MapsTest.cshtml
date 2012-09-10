@@ -1,0 +1,33 @@
+﻿@{
+    ViewBag.Title = "Google Maps Test";
+}
+
+<h1>@ViewBag.Message</h1>
+<h2>This is a test for Google Maps</h2>
+
+<script type="text/javascript" 
+    src="http://maps.googleapis.com/maps/api/js?key=AIzaSyAa94QkxbxRUf2rgdeutpcbWlsdZuoeGNY&sensor=true">
+</script>
+
+<script type="text/javascript">
+    function InitializeMap() {
+        var latlng = new google.maps.LatLng(-34.397, 150.644);
+        var myOptions = {
+            zoom: 8,
+            center: latlng,
+            mapTypeId: google.maps.MapTypeId.ROADMAP
+        };
+        var map = new google.maps.Map(document.getElementById("map"), myOptions);
+        var marker = new google.maps.Marker
+        (
+            {
+                position: new google.maps.LatLng(-34.397, 150.644),
+                map: map,
+                title: 'Click me'
+            }
+        );
+    }
+    window.onload = InitializeMap;
+</script>
+
+<div id ="map"   style="width: 304px; top: 50px; left: 50px; position: relative; height: 238px"></div>
