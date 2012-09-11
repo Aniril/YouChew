@@ -17,6 +17,15 @@ namespace YouChew.Controllers
 	[InitializeSimpleMembership]
 	public class AccountController : Controller
 	{
+
+        [HttpPost]
+        public JsonResult FacebookLogin(FacebookLoginModel model)
+        {
+            Session["uid"] = model.uid;
+            Session["accessToken"] = model.accessToken;
+
+            return Json(new { success = true });
+        }
 		//
 		// GET: /Account/Login
 

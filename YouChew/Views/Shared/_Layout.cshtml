@@ -17,6 +17,8 @@
                 <div class="float-right">
                     <section id="login">
                         @Html.Partial("_LoginPartial")
+                        <br />
+                        <fb:login-button autologoutlink="true"></fb:login-button>
                     </section>
                     <nav>
                         <ul id="menu">
@@ -45,5 +47,13 @@
 
         @Scripts.Render("~/bundles/jquery")
         @RenderSection("scripts", required: false)
+        <div id="fb-root"></div>
+        <script src="@Url.Content("~/Scripts/jquery-1.6.2.min.js")" type="text/javascript"></script>
+        <script src="@Url.Content("~/Scripts/Facebook.js")" type="text/javascript"></script>
+        <script type="text/javascript">
+            $(function () {
+                InitialiseFacebook(@System.Configuration.ConfigurationManager.AppSettings["FacebookAppId"]);
+            });
+        </script>
     </body>
 </html>
