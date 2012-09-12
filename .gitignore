@@ -60,6 +60,7 @@ _ReSharper.YouChew/
 *.obj
 *.pch
 *.pdb
+*.cache
 *.pgc
 *.pgd
 *.rsp
