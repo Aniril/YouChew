@@ -71,8 +71,10 @@ _ReSharper.YouChew/
 *.vspscc
 .builds
 *.dotCover
-bin/
-obj/
+bin\
+*\bin\
+obj\
+*\obj\
 [Tt]humbs.db 
 *.suo
 *.user
