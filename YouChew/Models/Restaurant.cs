@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
 
@@ -8,8 +9,8 @@ namespace YouChew.Models
 {
 	public class Restaurant
 	{
-		[Key]
-		public Guid ID { get; set; }
+		[DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+		public Guid Id { get; set; }
 		public DateTime addDate { get; set; }
 		public string name { get; set; }
 		public string cuisine { get; set; }

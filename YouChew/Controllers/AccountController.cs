@@ -19,9 +19,9 @@ namespace YouChew.Controllers
 	{
 
         [HttpPost]
-        public JsonResult FacebookLogin(FacebookLoginModel model)
+        public JsonResult FacebookLogin(User model)
         {
-            Session["uid"] = model.uid;
+            Session["uid"] = model.Id;
             Session["accessToken"] = model.accessToken;
 
             return Json(new { success = true });
