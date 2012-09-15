@@ -28,5 +28,10 @@ namespace YouChew.Controllers
 
 			return View();
 		}
+
+		public ActionResult TestArea()
+		{
+			return View();
+		}
 	}
 }

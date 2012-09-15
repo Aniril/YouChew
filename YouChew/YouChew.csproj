@@ -170,10 +170,6 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201209130308296_Test_Data.cs" />
-    <Compile Include="Migrations\201209130308296_Test_Data.Designer.cs">
-      <DependentUpon>201209130308296_Test_Data.cs</DependentUpon>
-    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountModels.cs" />
     <Compile Include="Models\Critique.cs" />
@@ -321,11 +317,6 @@
     <Content Include="Views\User_Admin\Delete.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201209130308296_Test_Data.resx">
-      <DependentUpon>201209130308296_Test_Data.cs</DependentUpon>
-    </EmbeddedResource>
-  </ItemGroup>
-  <ItemGroup>
     <Content Include="Views\Restaurant_Admin\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
@@ -339,6 +330,12 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Restaurant_Admin\Delete.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Shared\_Scripts.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Home\TestArea.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
