@@ -17,5 +17,7 @@ namespace YouChew.Models
 		public string location { get; set; }
 		public virtual ICollection<Critique> critiques { get; set; }
 		public string phone { get; set; }
+		public int likes { get; set; }
+		public int plusone { get; set; }
 	}
 }

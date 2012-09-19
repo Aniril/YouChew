@@ -49,15 +49,24 @@ namespace YouChew.Controllers
         [HttpPost]
         public ActionResult Create(Restaurant restaurant)
         {
-            if (ModelState.IsValid)
-            {
-                restaurant.Id = Guid.NewGuid();
-                db.Restaurants.Add(restaurant);
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
+			try
+			{
 
-            return View(restaurant);
+
+				if (ModelState.IsValid)
+				{
+					restaurant.Id = Guid.NewGuid();
+					db.Restaurants.Add(restaurant);
+					db.SaveChanges();
+					return RedirectToAction("Index");
+				}
+			}
+			catch(DataException)
+			{
+				ModelState.AddModelError("","Unable to save any changes made. Try again.");
+			}
+
+        	return View(restaurant);
         }
 
         //
@@ -66,13 +75,20 @@ namespace YouChew.Controllers
         [HttpPost]
         public ActionResult Edit(Restaurant restaurant)
         {
-            if (ModelState.IsValid)
-            {
-                db.Entry(restaurant).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
-            return View(restaurant);
+			try
+			{
+				if (ModelState.IsValid)
+				{
+					db.Entry(restaurant).State = EntityState.Modified;
+					db.SaveChanges();
+					return RedirectToAction("Index");
+				}
+			}
+			catch(DataException)
+			{
+				ModelState.AddModelError("", "Unable to save any changes made. Try again.");
+			}
+        	return View(restaurant);
         }
 
         //

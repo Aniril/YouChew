@@ -11,11 +11,12 @@ namespace YouChew.Models
 	{
 		[DatabaseGenerated(DatabaseGeneratedOption.Identity)]
 		public Guid Id { get; set; }
-		public DateTime dateTime { get; set; }
+		public DateTime postDate { get; set; }
 		public double? rating { get; set; }
 		public string review { get; set; }
-		public User user { get; set; }
-		public Restaurant restaurant { get; set; }
+		public virtual User user { get; set; }
+		public virtual Restaurant restaurant { get; set; }
 		public string title { get; set; }
+		public bool isShared { get; set; }
 	}
 }

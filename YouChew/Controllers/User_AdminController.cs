@@ -54,6 +54,8 @@ namespace YouChew.Controllers
 				if (ModelState.IsValid)
 				{
 					user.Id = Guid.NewGuid();
+					user.joinDate = DateTime.Now;
+					user.score = 0;
 					db.Users.Add(user);
 					db.SaveChanges();
 					return RedirectToAction("Index");
@@ -65,6 +67,12 @@ namespace YouChew.Controllers
 			}
         	return View(user);
         }
+
+		public ActionResult Edit(Guid id)
+		{
+			User user = db.Users.Find(id);
+			return View(user);
+		}
       
         //
         // POST: /User_Admin/Edit/5
@@ -88,16 +96,37 @@ namespace YouChew.Controllers
         	return View(user);
         }
 
+		public ActionResult Delete(string id,bool? saveChangesError)
+		{
+			if(saveChangesError.GetValueOrDefault())
+			{
+				ViewBag.ErrorMessage = "Unable to save changes. Try again.";
+			}
+			return View(db.Users.Find(id));
+		}
+
         //
         // POST: /User_Admin/Delete/5
 
         [HttpPost, ActionName("Delete")]
-        public ActionResult DeleteConfirmed(Guid id)
+        public ActionResult DeleteConfirmed(String username)
         {
-            User user = db.Users.Find(id);
-            db.Users.Remove(user);
-            db.SaveChanges();
-            return RedirectToAction("Index");
+			try
+			{
+				User userToDelete = new User() {username = username};
+				db.Entry(userToDelete).State = EntityState.Deleted;
+				db.SaveChanges();
+			}
+			catch(DataException e)
+			{
+				return RedirectToAction("Delete",
+				                        new System.Web.Routing.RouteValueDictionary()
+				                        	{
+				                        		{"username", username},
+				                        		{"saveChangesError", true}
+				                        	});
+			}
+        	return RedirectToAction("Index");
         }
 
         protected override void Dispose(bool disposing)

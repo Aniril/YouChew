@@ -19,7 +19,7 @@ namespace YouChew.Models.ORM
 			            				email = "testemail1",
 			            				joinDate = DateTime.Now,
 			            				username = "Username1",
-			            				password = "Password!"
+			            				password = "Password!",
 			            			},
 			            		new User()
 			            			{
@@ -75,16 +75,16 @@ namespace YouChew.Models.ORM
 			                	{
 			                		new Critique()
 			                			{
-			                				dateTime = DateTime.Now,
+			                				postDate = DateTime.Now,
 			                				rating = 4,
 			                				restaurant = restaurants.First(),
 			                				review = "Good",
 			                				title = "Not a bad place",
-			                				user = users.First()
+			                				user = users.First(),
 			                			},
 			                		new Critique()
 			                			{
-			                				dateTime = DateTime.Now,
+			                				postDate = DateTime.Now,
 			                				rating = 3,
 			                				restaurant = restaurants.First(),
 			                				review = "Decent",
@@ -94,7 +94,11 @@ namespace YouChew.Models.ORM
 			                	};
 			critiques.ForEach(s => context.Critiques.Add(s));
 			context.SaveChanges();
+
+			
 		}
+
+		
 
 	}
 }
