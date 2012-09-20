@@ -15,10 +15,10 @@
 
         FB.getLoginStatus(function (response) {
             if (response.status === 'connected') {
-                alert("user is logged into fb");
+                console.log('user is logged into fb');
             }
-            else if (response.status === 'not_authorized') { alert("user is not authorised"); }
-            else { alert("user is not conntected to facebook"); }
+            else if (response.status === 'not_authorized') { console.log('user is not authorised'); }
+            else { console.log('user is not conntected to facebook'); }
 
         });
 
@@ -28,7 +28,7 @@
                 type: "POST",
                 data: credentials,
                 error: function () {
-                    alert("error logging in to your facebook account.");
+                    console.log('error logging in to your facebook account.');
                 },
                 success: function () {
                     window.location.reload();
