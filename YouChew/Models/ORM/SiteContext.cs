@@ -10,6 +10,7 @@ namespace YouChew.Models.ORM
 {
 	public class SiteContext : DbContext
 	{
+		public DbSet<UserProfile> UserProfiles { get; set; }
 		public DbSet<Restaurant> Restaurants { get; set; }
 		public DbSet<User> Users { get; set; }
 		public DbSet<Critique> Critiques { get; set; }

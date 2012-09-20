@@ -9,15 +9,11 @@ using System.Web.Security;
 
 namespace YouChew.Models
 {
-	public class UsersContext : DbContext
-	{
-		public UsersContext()
-			: base("DefaultConnection")
-		{
-		}
-
-		public DbSet<UserProfile> UserProfiles { get; set; }
-	}
+	
+		//public UsersContext()
+		//    : base("DefaultConnection")
+		//{
+		//}
 
 	[Table("UserProfile")]
 	public class UserProfile
