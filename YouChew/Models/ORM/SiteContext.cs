@@ -10,7 +10,8 @@ namespace YouChew.Models.ORM
 {
 	public class SiteContext : DbContext
 	{
-		public DbSet<UserProfile> UserProfiles { get; set; }
+		//public DbSet<UserProfile> UserProfiles { get; set; }
+		public DbSet<Role> Roles { get; set; } 
 		public DbSet<Restaurant> Restaurants { get; set; }
 		public DbSet<User> Users { get; set; }
 		public DbSet<Critique> Critiques { get; set; }
@@ -30,6 +31,7 @@ namespace YouChew.Models.ORM
 
 			modelBuilder.Entity<Critique>().HasRequired(t => t.user);
 			modelBuilder.Entity<Critique>().HasRequired(t => t.restaurant);
+			modelBuilder.Entity<Critique>().Property(t => t.review).HasMaxLength(600);
 			modelBuilder.Entity<Critique>().Property(t => t.title).IsRequired();
 			modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
 		}

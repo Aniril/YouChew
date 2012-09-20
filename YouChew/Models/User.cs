@@ -11,6 +11,7 @@ namespace YouChew.Models
 	{
 		[DatabaseGenerated(DatabaseGeneratedOption.Identity)]
 		public Guid Id { get; set; }
+		public int Roleid { get; set; }
 		public DateTime joinDate { get; set; }
 		public string username { get; set; }
 		public string accessToken { get; set; }
