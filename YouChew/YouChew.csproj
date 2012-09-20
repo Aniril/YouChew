@@ -173,7 +173,9 @@
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountModels.cs" />
     <Compile Include="Models\Critique.cs" />
+    <Compile Include="Models\ORM\GenericRepository.cs" />
     <Compile Include="Models\ORM\SiteInit.cs" />
+    <Compile Include="Models\ORM\UnitOfWork.cs" />
     <Compile Include="Models\Restaurant.cs" />
     <Compile Include="Models\Role.cs" />
     <Compile Include="Models\User.cs" />
