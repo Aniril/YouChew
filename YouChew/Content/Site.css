@@ -102,16 +102,19 @@ h5, h6 {
     background-color: #efeeef;
     clear: both;
     padding-bottom: 35px;
+    
+    /*addition*/
+    padding-top: 20px;
 }
 
     .main-content {
-        background: url("../Images/accent.png") no-repeat;
+        /*background: url("../Images/accent.png") no-repeat;*/
         padding-left: 10px;
         padding-top: 30px;
     }
 
     .featured + .main-content {
-        background: url("../Images/heroAccent.png") no-repeat;
+        /*background: url("../Images/heroAccent.png") no-repeat;*/
     }
 
 header .content-wrapper {
@@ -209,7 +212,7 @@ ul#menu {
 ----------------------------------------------------------*/
 /* featured */
 .featured {
-    background-color: #fff;
+    /*background-color: #fff;*/
 }
 
     .featured .content-wrapper {
@@ -221,6 +224,10 @@ ul#menu {
         background-image: linear-gradient(left, #7ac0da 0%, #a4d4e6 100%);
         color: #3e5667;
         padding: 20px 40px 30px 40px;
+        
+        /*Additions*/
+        box-shadow: 5px 5px 20px #000;
+        border-radius: 10px;
     }
 
         .featured hgroup.title h1, .featured hgroup.title h2 {
