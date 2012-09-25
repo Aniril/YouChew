@@ -1,13 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity.Validation;
+using System.Diagnostics;
 using System.Linq;
+using System.Text;
 using System.Web;
 using System.Data.Entity;
 using YouChew.Models;
 
 namespace YouChew.Models.ORM
 {
-	public class SiteInit : DropCreateDatabaseIfModelChanges<SiteContext>
+	public class SiteInit : DropCreateDatabaseAlways<SiteContext>
 	{
 		protected override void Seed(SiteContext context)
 		{
@@ -20,6 +23,7 @@ namespace YouChew.Models.ORM
 			            				joinDate = DateTime.Now,
 			            				username = "Username1",
 			            				password = "Password!",
+			            				Role = 1
 			            			},
 			            		new User()
 			            			{
@@ -27,7 +31,8 @@ namespace YouChew.Models.ORM
 			            				email = "testemail2",
 			            				joinDate = DateTime.Now,
 			            				username = "Username2",
-			            				password = "Password!"
+			            				password = "Password!",
+			            				Role = 1
 			            			},
 			            		new User()
 			            			{
@@ -35,11 +40,14 @@ namespace YouChew.Models.ORM
 			            				email = "testemail3",
 			            				joinDate = DateTime.Now,
 			            				username = "Username3",
-			            				password = "Password!"
+			            				password = "Password!",
+			            				Role = 1
 			            			}
 			            	};
 			users.ForEach(s => context.Users.Add(s));
 			context.SaveChanges();
+
+
 
 			var restaurants = new List<Restaurant>
 			                  	{
@@ -49,27 +57,47 @@ namespace YouChew.Models.ORM
 			                  				cuisine = "french",
 			                  				name = "French Restaurant",
 			                  				location = "US",
-			                  				phone = "555-314-4352"
+			                  				phone = "5553144352"
 			                  			},
-										new Restaurant()
+			                  		new Restaurant()
 			                  			{
 			                  				addDate = DateTime.Now,
 			                  				cuisine = "mexican",
 			                  				name = "Mexican Restaurant",
 			                  				location = "US",
-			                  				phone = "555-314-4352"
+			                  				phone = "5553144352"
 			                  			},
-										new Restaurant()
+			                  		new Restaurant()
 			                  			{
 			                  				addDate = DateTime.Now,
 			                  				cuisine = "japanese",
 			                  				name = "Japanese Restaurant",
 			                  				location = "US",
-			                  				phone = "555-314-4352"
+			                  				phone = "5553144352"
 			                  			}
 			                  	};
 			restaurants.ForEach(s => context.Restaurants.Add(s));
-			context.SaveChanges();
+			try
+			{
+				context.SaveChanges();
+			}
+			catch(DbEntityValidationException ex)
+			{
+				StringBuilder sb = new StringBuilder();
+
+				foreach (var failure in ex.EntityValidationErrors)
+				{
+					sb.AppendFormat("{0} failed validation\n", failure.Entry.Entity.GetType());
+
+					foreach (var error in failure.ValidationErrors)
+					{
+						sb.AppendFormat("- {0} : {1}", error.PropertyName, error.ErrorMessage);
+						sb.AppendLine();
+					}
+				}
+
+			throw new DbEntityValidationException("Entity Validation Failed - errors follow:\n" + sb.ToString());
+			}
 
 			var critiques = new List<Critique>
 			                	{
@@ -95,10 +123,18 @@ namespace YouChew.Models.ORM
 			critiques.ForEach(s => context.Critiques.Add(s));
 			context.SaveChanges();
 
-			
+
+			var roles = new List<Role>
+			            	{
+			            		new Role()
+			            			{
+			            				Id = 1,
+			            				userguid = users.First().Id,
+			            				name = "testrole"
+			            			}
+			            	};
+			roles.ForEach(s => context.Roles.Add(s));
+			context.SaveChanges();
 		}
-
-		
-
 	}
 }

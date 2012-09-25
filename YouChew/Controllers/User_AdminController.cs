@@ -12,14 +12,15 @@ namespace YouChew.Controllers
 {
     public class User_AdminController : Controller
     {
-        private SiteContext db = new SiteContext();
+        private UnitOfWork unitOfWork = new UnitOfWork();
 
         //
         // GET: /User_Admin/
 
         public ActionResult Index()
         {
-            return View(db.Users.ToList());
+        	
+        	return View(unitOfWork.UserRepository.Get().ToList());
         }
 
         //
@@ -27,12 +28,8 @@ namespace YouChew.Controllers
 
         public ActionResult Details(Guid id)
         {
-            User user = db.Users.Find(id);
-            if (user == null)
-            {
-                return HttpNotFound();
-            }
-            return View(user);
+        	return View(unitOfWork.UserRepository.GetByID(id));
+			
         }
 
         //
@@ -49,29 +46,29 @@ namespace YouChew.Controllers
         [HttpPost]
         public ActionResult Create(User user)
         {
+        	user.Role = 1;
+        	user.score = 0.0;
+        	user.joinDate = DateTime.Now;
 			try
 			{
 				if (ModelState.IsValid)
 				{
-					user.Id = Guid.NewGuid();
-					user.joinDate = DateTime.Now;
-					user.score = 0;
-					db.Users.Add(user);
-					db.SaveChanges();
+					unitOfWork.UserRepository.Insert(user);
+					unitOfWork.Save();
 					return RedirectToAction("Index");
 				}
 			}
-			catch(DataException)
+			catch(DataException ex)
 			{
 				ModelState.AddModelError("","Unable to save any changes made. Try again.");
+				Console.WriteLine(ex.ToString());
 			}
         	return View(user);
         }
 
 		public ActionResult Edit(Guid id)
 		{
-			User user = db.Users.Find(id);
-			return View(user);
+			return View(unitOfWork.UserRepository.GetByID(id));
 		}
       
         //
@@ -84,8 +81,8 @@ namespace YouChew.Controllers
 			{
 				if (ModelState.IsValid)
 				{
-					db.Entry(user).State = EntityState.Modified;
-					db.SaveChanges();
+					unitOfWork.UserRepository.Update(user);
+					unitOfWork.Save();
 					return RedirectToAction("Index");
 				}
 			}
@@ -96,42 +93,25 @@ namespace YouChew.Controllers
         	return View(user);
         }
 
-		public ActionResult Delete(string id,bool? saveChangesError)
+		public ActionResult Delete(Guid id)
 		{
-			if(saveChangesError.GetValueOrDefault())
-			{
-				ViewBag.ErrorMessage = "Unable to save changes. Try again.";
-			}
-			return View(db.Users.Find(id));
+			return View(unitOfWork.UserRepository.GetByID(id));
 		}
 
         //
         // POST: /User_Admin/Delete/5
 
         [HttpPost, ActionName("Delete")]
-        public ActionResult DeleteConfirmed(String username)
+        public ActionResult DeleteConfirmed(Guid id)
         {
-			try
-			{
-				User userToDelete = new User() {username = username};
-				db.Entry(userToDelete).State = EntityState.Deleted;
-				db.SaveChanges();
-			}
-			catch(DataException e)
-			{
-				return RedirectToAction("Delete",
-				                        new System.Web.Routing.RouteValueDictionary()
-				                        	{
-				                        		{"username", username},
-				                        		{"saveChangesError", true}
-				                        	});
-			}
-        	return RedirectToAction("Index");
+				unitOfWork.UserRepository.Delete(id);
+				unitOfWork.Save();
+				return RedirectToAction("Index");
         }
 
         protected override void Dispose(bool disposing)
         {
-            db.Dispose();
+           unitOfWork.Dispose();
             base.Dispose(disposing);
         }
     }

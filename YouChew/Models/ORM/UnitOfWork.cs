@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
+using System.Data.Entity.Infrastructure;
 using System.Linq;
 using System.Web;
 
@@ -53,7 +55,14 @@ namespace YouChew.Models.ORM
 
 		public void Save()
 		{
-			context.SaveChanges();
+			try
+			{
+				context.SaveChanges();
+			}
+			catch(InvalidOperationException ex)
+			{
+				Console.WriteLine(ex.ToString());
+			}
 		}
 
 		private bool disposed = false;
