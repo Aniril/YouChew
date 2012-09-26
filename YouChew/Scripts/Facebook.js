@@ -9,7 +9,7 @@
         });
 
         FB.Event.subscribe('auth.login', function (response) {
-            var credentials = { uid: response.authResponse.userID, accessToken: response.authResponse.accessToken };
+            var credentials = { FBid: response.authResponse.userID, accessToken: response.authResponse.accessToken };
             SubmitLogin(credentials);
         });
 

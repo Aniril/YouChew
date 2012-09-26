@@ -1,31 +1,29 @@
-﻿//using System;
-//using System.Collections.Generic;
-//using System.Linq;
-//using System.Transactions;
-//using System.Web;
-//using System.Web.Mvc;
-//using System.Web.Security;
-//using DotNetOpenAuth.AspNet;
-//using Microsoft.Web.WebPages.OAuth;
-//using WebMatrix.WebData;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Transactions;
+using System.Web;
+using System.Web.Mvc;
+using System.Web.Security;
+using DotNetOpenAuth.AspNet;
+using Microsoft.Web.WebPages.OAuth;
+using WebMatrix.WebData;
 //using YouChew.Filters;
-//using YouChew.Models;
+using YouChew.Models;
 
-//namespace YouChew.Controllers
-//{
+namespace YouChew.Controllers
+{
 //    [Authorize]
 //    [InitializeSimpleMembership]
-//    public class AccountController : Controller
-//    {
-
-//        [HttpPost]
-//        public JsonResult FacebookLogin(User model)
-//        {
-//            Session["uid"] = model.Id;
-//            Session["accessToken"] = model.accessToken;
-
-//            return Json(new { success = true });
-//        }
+    public class AccountController : Controller
+    {
+        [HttpPost]
+        public JsonResult FacebookLogin(User model)
+        {
+            Session["FBid"] = model.FBid;
+            Session["accessToken"] = model.accessToken;
+            return Json(new { success = true });
+        }
 //        //
 //        // GET: /Account/Login
 
@@ -412,5 +410,5 @@
 //            }
 //        }
 //        #endregion
-//    }
-//}
+    }
+}

@@ -19,6 +19,8 @@
                         @Html.Partial("_LoginPartial")
                         <br />
                         <fb:login-button autologoutlink="true"></fb:login-button>
+                        <p>Facebook Access Token: @Session["accessToken"]</p>
+                        <p>Facebook User Id: @Session["FBid"]</p>
                     </section>
                     <nav>
                         <ul id="menu">
