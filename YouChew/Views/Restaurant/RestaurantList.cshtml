@@ -1,0 +1,26 @@
+﻿@model IEnumerable<YouChew.Models.Restaurant>
+
+@{
+    ViewBag.Title = "RestaurantList";
+}
+
+<h2>Restaurant List</h2>
+
+<table>
+
+@foreach (var r in Model)
+{
+    <tr>
+        <td>
+            <a href="Restaurant">@r.name</a>
+            <br />
+            <img src="../../Images/kfc.jpg" width="50px" height="50px" />
+        </td>
+        <td align="right">
+            Location: @r.location <br />
+            Phone: @r.phone
+        </td>
+    </tr>
+}
+
+</table>

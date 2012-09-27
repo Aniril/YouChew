@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using YouChew.Models;
+using YouChew.Models.ORM;
 
 namespace YouChew.Controllers
 {
@@ -12,14 +13,21 @@ namespace YouChew.Controllers
         //
         // GET: /Restaurant/
 
+        UnitOfWork uow = new UnitOfWork();
+
+        
         public ActionResult Restaurant()
         {
-            Restaurant tempRes = new Restaurant();
-            tempRes.name = "Kentucky Fried Chicken";
-            tempRes.phone = "(555)555-5555";
-            tempRes.cuisine = "Delicious Chicken";
+            IEnumerable<Restaurant> stuff =  uow.RestaurantRepository.Get();
 
-            return View("Restaurant", tempRes);
+            return View(stuff.First());
+        }
+
+        public ActionResult RestaurantList()
+        {
+            IEnumerable<Restaurant> stuff = uow.RestaurantRepository.Get();
+
+            return View(stuff);
         }
 
     }
