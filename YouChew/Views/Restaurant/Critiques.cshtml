@@ -1,0 +1,26 @@
+﻿@model IEnumerable<YouChew.Models.Critique>
+
+@{
+    ViewBag.Title = "Critiques";
+}
+
+<h2>Critiques</h2>
+
+@foreach (var item in Model)
+{
+	<tr>
+		<td>
+			@Html.DisplayFor(modelItem => item.Id)
+		</td>
+	</tr>
+	<tr>
+		<td>
+			@Html.DisplayFor(modelItem => item.title)
+		</td>
+	</tr>
+    <tr>
+		<td>
+		@Html.DisplayFor(modelItem => item.review)
+	    </td>
+    </tr>
+}

@@ -30,5 +30,14 @@ namespace YouChew.Controllers
             return View(stuff);
         }
 
+		public ActionResult Critiques(Guid id)
+		{
+			IEnumerable<Critique> morestuff = uow.CritiqueRepository.Get(crit => crit.restaurant != null );
+
+			// Gets critiques for whatever restaurant you select
+			//IEnumerable<Critique> morestuff2 = uow.CritiqueRepository.Get().Where(x => x.restaurant.Id == id);
+			return View(morestuff);
+		}
+
     }
 }
