@@ -1,0 +1,42 @@
+﻿body {
+    background-color: #ddd;
+}
+
+.float-left  {
+    float: left;
+}
+
+.float-right {
+    float: right;
+}
+
+
+
+#body {
+    background-color: #69f;
+    border-radius: 1em;
+    padding: 1em 0em 1em 0em;
+    box-shadow: 5px 5px 20px #000;
+    clear: both;
+    width: 50%;
+    margin: auto;
+    color: White;
+}
+
+.featured 
+{
+    box-shadow: inset 0px 5px 20px #369;
+    height: 400px;
+    clear: both;
+    padding: 0em 1em 0em 1em;
+}
+
+header 
+{
+    padding: 0em 1em 2em 1em;
+}
+
+footer 
+{
+    padding: 1em 1em 0em 1em;
+}

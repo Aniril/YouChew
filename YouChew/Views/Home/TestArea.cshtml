@@ -1,13 +1,13 @@
 ﻿@{
     //Layout = null;
     ViewBag.Title = "Test Page";
+    Layout = "~/Views/Shared/_LayoutTest.cshtml";
 }
 
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title>@ViewBag.Title</title>
-    <link rel="Stylesheet" href="../../Content/StyleTest.css" />
-</head>
-<body>
-    <h1>@ViewBag.Title</h1>
-</body>
+
+@section featured {
+    <section class="featured">
+        <h1>Yo yo yo. :I</h1>
+        Going to make this part collapsible. Feel free to throw color scheme suggestions at me.
+    </section>
+}
