@@ -13,7 +13,7 @@ namespace YouChew.Models.ORM
 		private GenericRepository<User> userRepo;
 		private GenericRepository<Restaurant> restaurantRepo;
 		private GenericRepository<Critique> critiqueRepo;
-		//private Repository to implement <User> and <Role>
+		private GenericRepository<Role> roleRepo; 
 
 		public GenericRepository<User> UserRepository
 		{
@@ -51,7 +51,17 @@ namespace YouChew.Models.ORM
 			}
 		}
 
-		//other repo methods here
+		public GenericRepository<Role> RoleRepository
+		{
+			get
+			{
+				if(this.roleRepo == null)
+				{
+					this.roleRepo = new GenericRepository<Role>(context);
+				}
+				return roleRepo;
+			}
+		}
 
 		public void Save()
 		{

@@ -10,7 +10,7 @@ using YouChew.Models;
 
 namespace YouChew.Models.ORM
 {
-	public class SiteInit : DropCreateDatabaseIfModelChanges<SiteContext>
+	public class SiteInit : DropCreateDatabaseAlways<SiteContext>
 	{
 		protected override void Seed(SiteContext context)
 		{
@@ -21,8 +21,8 @@ namespace YouChew.Models.ORM
 			            				address = "Test Address 1",
 			            				email = "testemail1",
 			            				joinDate = DateTime.Now,
-			            				username = "Username1",
-			            				password = "Password!",
+			            				username = "User1",
+			            				password = "password",
 			            				Role = 1
 			            			},
 			            		new User()
@@ -30,8 +30,8 @@ namespace YouChew.Models.ORM
 			            				address = "Test Address 2",
 			            				email = "testemail2",
 			            				joinDate = DateTime.Now,
-			            				username = "Username2",
-			            				password = "Password!",
+			            				username = "User2",
+			            				password = "password",
 			            				Role = 1
 			            			},
 			            		new User()
@@ -39,14 +39,30 @@ namespace YouChew.Models.ORM
 			            				address = "Test Address 3",
 			            				email = "testemail3",
 			            				joinDate = DateTime.Now,
-			            				username = "Username3",
-			            				password = "Password!",
-			            				Role = 1
+			            				username = "User3",
+			            				password = "password",
+										Role = 1
 			            			}
 			            	};
+			User admin = new User()
+			             	{
+			             		address = "Admin",
+			             		email = "Admin",
+			             		username = "Admin",
+			             		password = "Password!",
+								joinDate = DateTime.Now
+			             	};
 			users.ForEach(s => context.Users.Add(s));
+			context.Users.Add(admin);
 			context.SaveChanges();
 
+			Guid[] guids = new Guid[3];
+			int i = 0;
+			foreach (User x in users)
+			{
+				guids[i] = x.Id;
+				i++;
+			}
 
 
 			var restaurants = new List<Restaurant>
@@ -128,10 +144,28 @@ namespace YouChew.Models.ORM
 			            	{
 			            		new Role()
 			            			{
-			            				Id = 1,
-			            				userguid = users.First().Id,
-			            				name = "testrole"
-			            			}
+			            			Id = 2,
+			            			userguid = admin.Id,
+			            			name = "Admin"
+			            			},
+			            	new Role()
+			            		{
+			            			Id = 1,
+									userguid = guids[0],
+									name = "User"
+			            		},
+							new Role()
+			            		{
+			            			Id = 1,
+									userguid = guids[1],
+									name = "User"
+			            		},
+							new Role()
+			            		{
+			            			Id = 1,
+									userguid = guids[2],
+									name = "User"
+			            		}
 			            	};
 			roles.ForEach(s => context.Roles.Add(s));
 			context.SaveChanges();
