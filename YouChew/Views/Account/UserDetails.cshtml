@@ -1,0 +1,21 @@
+﻿@model YouChew.Models.FacebookUser
+ 
+@{
+    ViewBag.Title = "Part 2 - Facebook Login Button";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+ 
+<h2>Part 2 - Facebook User Details</h2>
+ 
+<table>
+    <tr><td>Picture</td><td><img src='@Model.picture.data.url' /></td></tr>
+    <tr><td>Facebook Id</td><td>@Model.FBuid</td></tr>
+    <tr><td>Username</td><td>@Model.FBusername</td></tr>
+    <tr><td>First Name</td><td>@Model.first_name</td></tr>
+    <tr><td>Last Name</td><td>@Model.last_name</td></tr>
+    <tr><td>Gender</td><td>@Model.gender</td></tr>
+    <tr><td>Locale</td><td>@Model.locale</td></tr>
+    <tr><td>Location</td><td>Id - @Model.location.id<br />Name - @Model.location.name</td></tr>
+    <tr><td>Timezone</td><td>@Model.timezone</td></tr>
+    <tr><td>Facebook Link</td><td>@Model.link</td></tr>
+</table>

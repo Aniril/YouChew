@@ -11,22 +11,33 @@ using WebMatrix.WebData;
 using YouChew.Filters;
 using YouChew.Models.ORM;
 using YouChew.Models;
+using Facebook;
 
 namespace YouChew.Controllers
 {
 	
-	[Authorize]
-	[InitializeSimpleMembership]
+	//[Authorize]
+	//[InitializeSimpleMembership]
 	public class AccountController : Controller
 	{
 
 		[HttpPost]
-		public JsonResult FacebookLogin(User model)
+		public JsonResult FacebookLogin(FacebookUser model)
 		{
 			Session["FBid"] = model.FBid;
 			Session["accessToken"] = model.accessToken;
 			return Json(new { success = true });
 		}
+
+        [HttpGet]
+        public ActionResult UserDetails()
+        {
+            var client = new FacebookClient(Session["accessToken"].ToString());
+            dynamic fbresult = client.Get("me?fields=id,email,first_name,last_name,gender,locale,link,username,timezone,location,picture");
+            FacebookUser facebookUser = Newtonsoft.Json.JsonConvert.DeserializeObject<FacebookUser>(fbresult.ToString());
+
+            return View(facebookUser);
+        }
 		//
 		// GET: /Account/Login
 
