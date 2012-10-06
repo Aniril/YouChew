@@ -22,6 +22,11 @@ namespace YouChew.Controllers
             return View(db.Restaurants.ToList());
         }
 
+		public ActionResult RestaurantViewer()
+		{
+			return View();
+		}
+
         //
         // GET: /Restaurant_Admin/Details/5
 

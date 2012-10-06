@@ -1,0 +1,67 @@
+﻿@{
+    ViewBag.Title = "RestaurantViewer";
+}
+
+<h2>RestaurantViewer</h2>
+<html>
+	<head>
+		<title>Explore Restaurants</title>
+		@{
+			Layout = "~/Views/Shared/_Layout.cshtml";
+		}
+        <script type="text/javascript" src="@Url.Content("~/Scripts/jquery-1.7.1.min.js")"></script>
+        @Html.Partial("_Scripts")
+
+		<script type="text/javascript">
+		     
+		     var config = {
+		          apiKey: 'JK2MVQ3FRVPYDXOFCJMXECVA3OLWI3LTDF4UNUW3BLW40DKT',
+		          authUrl: 'https://foursquare.com/',
+		          apiUrl: 'https://api.foursquare.com/'
+		     };
+
+		     function doAuthRedirect() {
+		          var redirect = window.location.href.replace(window.location.hash, '');
+		          var url = config.authUrl + 'oauth2/authenticate?response_type=token&client_id=' + config.apiKey +
+     		          '&redirect_uri=' + encodeURIComponent(redirect) +
+          		          '&state=' + encodeURIComponent($.bbq.getState('req') || 'users/self');
+		          console.log(url);
+		          //window.location.href = url;
+		     };
+
+		     if ($.bbq.getState('access_token')) {
+		          // If there is a token in the state, consume it
+		          var token = $.bbq.getState('access_token');
+		          console.log(token);
+		          $.bbq.pushState({ }, 2);
+		     } else if ($.bbq.getState('error')) {
+		     } else {
+		          doAuthRedirect();
+		     }
+
+
+		      //HTML 5 geolocation
+		     navigator.geolocation.getCurrentPosition(function (data) {
+		         var lat = data['coords']['latitude'];
+		         var lng = data['coords']['longitude'];
+		         /* Create map. */
+		         var map = new L.Map('map_canvas').setView(new L.LatLng(lat, lng), 15);
+		         console.log("Map stuff"+map.dimensions);
+		         /**
+		         * This is a sample map url that you need to change.
+		         * Sign up at http://mapbox.com/foursquare for a custom map url.
+		         */
+		         var mapboxUrl = 'https://tiles.mapbox.com/youchewteam/map/map-e1chialb';
+		         // mapbox.auto(mapboxUrl);
+
+
+		         //wax.tilejson(mapboxUrl, function(tilejson) { map.addLayer(new wax.leaf.connector(tilejson)) })
+		     });
+		     
+
+		</script>
+	</head>
+	<body>
+		<div style="width: 100%;height: 100%;" id="map_canvas"></div>
+	</body>
+</html>

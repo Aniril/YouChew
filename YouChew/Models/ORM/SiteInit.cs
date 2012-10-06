@@ -10,7 +10,7 @@ using YouChew.Models;
 
 namespace YouChew.Models.ORM
 {
-	public class SiteInit : DropCreateDatabaseAlways<SiteContext>
+	public class SiteInit : DropCreateDatabaseIfModelChanges<SiteContext>
 	{
 		protected override void Seed(SiteContext context)
 		{

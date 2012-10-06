@@ -38,6 +38,5 @@ namespace YouChew.Controllers
 			//IEnumerable<Critique> morestuff2 = uow.CritiqueRepository.Get().Where(x => x.restaurant.Id == id);
 			return View(morestuff);
 		}
-
     }
 }
