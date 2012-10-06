@@ -16,12 +16,13 @@ using Facebook;
 namespace YouChew.Controllers
 {
 	
-	//[Authorize]
-	//[InitializeSimpleMembership]
+	[Authorize]
+	[InitializeSimpleMembership]
 	public class AccountController : Controller
 	{
 
 		[HttpPost]
+		[AllowAnonymous]
 		public JsonResult FacebookLogin(FacebookUser model)
 		{
 			Session["FBid"] = model.FBid;
