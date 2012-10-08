@@ -10,6 +10,11 @@
     float: right;
 }
 
+.clear-both 
+{
+    clear: both;
+}
+
 
 
 #body {
@@ -24,12 +29,13 @@
     overflow: hidden;
 }
 
-.featured 
+.featured
 {
     background-color: #369;
     box-shadow: inset 0px 5px 20px #003;
     clear: both;
-    padding: 0em 1em 0em 1em;
+    padding: 1px 1em 1em 1em;
+    margin: 1em 0em 1em 0em;
 }
 
 header 
@@ -39,5 +45,5 @@ header
 
 footer 
 {
-    padding: 1em 1em 0em 1em;
+    padding: 0em 1em 0em 1em;
 }
