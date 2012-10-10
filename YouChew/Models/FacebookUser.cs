@@ -9,23 +9,11 @@ namespace YouChew.Models
     {
         public string FBid { get; set; }
         public string accessToken { get; set; }
-        public string FBuid { get; set; }
-        public string FBemail { get; set; }
-        public string first_name { get; set; }
-        public string last_name { get; set; }
-        public string gender { get; set; }
-        public string locale { get; set; }
-        public string link { get; set; }
-        public string FBusername { get; set; }
-        public int timezone { get; set; }
-        public FacebookLocation location { get; set; }
-        public Picture picture { get; set; }
-    }
-
-    public class FacebookLocation
-    {
         public string id { get; set; }
+        public string email { get; set; }
         public string name { get; set; }
+        public string link { get; set; }
+        public Picture picture { get; set; }
     }
 
     public class Picture
