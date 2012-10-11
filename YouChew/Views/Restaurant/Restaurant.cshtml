@@ -4,81 +4,7 @@
     ViewBag.Title = "YouChew - " + Model.name;
 }
 
-<html>
-<head>
-    <script src='http://api.tiles.mapbox.com/mapbox.js/v0.6.6/mapbox.js'></script>
-    <link href='http://api.tiles.mapbox.com/mapbox.js/v0.6.6/mapbox.css' rel='stylesheet' />
-    <style>
-        #map { width:100%; height:400px; }
-    </style>
-</head>
-<body>
-
-<center>
-    <h1>YouChew Geolocator</h1>
-
-    <br />
-    <br />
-
-    <a href='#' id='geolocate' style="font-size: x-large">Find Current Location</a>
-</center>
-
-<br />
-
-<div id='map'></div>
-
-
-<script>
-    var m = mapbox.map('map').zoom(2).center({ lat: 0, lon: 0 });
-    m.addLayer(mapbox.layer().id('examples.map-4l7djmvo'));
-
-    var markerLayer = mapbox.markers.layer();
-    m.addLayer(markerLayer);
-
-    var geolocate = document.getElementById('geolocate');
-
-    if (!navigator.geolocation) {
-      geolocate.innerHTML = 'geolocation is not available';
-    } else {
-      geolocate.onclick = function(e) {
-          e.preventDefault();
-          e.stopPropagation();
-          navigator.geolocation.getCurrentPosition(
-          function(position) {
-              // Once we've got a position, zoom and center the map
-              // on it, add ad a single feature
-              m.zoom(11).center({
-                  lat: position.coords.latitude,
-                  lon: position.coords.longitude
-              });
-              markerLayer.add_feature({
-                  geometry: {
-                      coordinates: [
-                          position.coords.longitude,
-                          position.coords.latitude]
-                  },
-                  properties: {
-                      'marker-color': '#000',
-                      'marker-symbol': 'star-stroked',
-                  }
-              });
-              // And hide the geolocation button
-              geolocate.parentNode.removeChild(geolocate);
-          },
-          function(err) {
-              // If the user chooses not to allow their location
-              // to be shared, display an error message.
-              geolocate.innerHTML = 'position could not be found';
-          });
-      };
-  }
-</script>
-
-</body>
-</html> 
-
-
-<!-- <h2>@Model.name</h2>
+<h2>@Model.name</h2>
 
 <br />
 
@@ -128,4 +54,4 @@
         );
     }
     window.onload = InitializeMap;
-</script> -->
+</script>
