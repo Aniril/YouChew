@@ -2,7 +2,7 @@
 <html lang="en">
     <head>
         <meta charset="utf-8" />
-        <title>@ViewBag.Title - My ASP.NET MVC Application</title>
+        <title>@ViewBag.Title - YouChew</title>
         <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
         <meta name="viewport" content="width=device-width" />
         @Styles.Render("~/Content/css")
@@ -18,9 +18,7 @@
                     <section id="login">
                         @Html.Partial("_LoginPartial")
                         <br />
-                        <fb:login-button autologoutlink="true"></fb:login-button>
-                        <p>Facebook Access Token: @Session["accessToken"]</p>
-                        <p>Facebook User Id: @Session["FBid"]</p>
+                        @Html.Partial("_FacebookPartial")
                     </section>
                     <nav>
                         <ul id="menu">
@@ -45,20 +43,12 @@
         <footer>
             <div class="content-wrapper">
                 <div class="float-left">
-                    <p>&copy; @DateTime.Now.Year - My ASP.NET MVC Application</p>
+                    <p>&copy; @DateTime.Now.Year - YouChew</p>
                 </div>
             </div>
         </footer>
 
         @Scripts.Render("~/bundles/jquery")
         @RenderSection("scripts", required: false)
-        <div id="fb-root"></div>
-        <script src="@Url.Content("~/Scripts/jquery-1.7.1.min.js")" type="text/javascript"></script>
-        <script src="@Url.Content("~/Scripts/Facebook.js")" type="text/javascript"></script>
-        <script type="text/javascript">
-            $(function () {
-                InitialiseFacebook(@System.Configuration.ConfigurationManager.AppSettings["FacebookAppId"]);
-            });
-        </script>
     </body>
 </html>

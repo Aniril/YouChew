@@ -33,16 +33,14 @@ namespace YouChew.Controllers
         [HttpGet]
         [AllowAnonymous]
         public ActionResult UserDetails()
-        {
+        {            
             var client = new FacebookClient(Session["accessToken"].ToString());
             dynamic fbresult = client.Get("me?fields=id,email,name,link,picture");
             FacebookUser facebookUser = Newtonsoft.Json.JsonConvert.DeserializeObject<FacebookUser>(fbresult.ToString());
-
             return View(facebookUser);
         }
 		//
 		// GET: /Account/Login
-
 		[AllowAnonymous]
 		public ActionResult Login(string returnUrl)
 		{
