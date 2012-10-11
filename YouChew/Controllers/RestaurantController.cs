@@ -30,6 +30,11 @@ namespace YouChew.Controllers
             return View(stuff);
         }
 
+        public ActionResult Geolocator()
+        {
+            return View();
+        }
+
 		public ActionResult Critiques(Guid id)
 		{
 			IEnumerable<Critique> morestuff = uow.CritiqueRepository.Get(crit => crit.restaurant != null );

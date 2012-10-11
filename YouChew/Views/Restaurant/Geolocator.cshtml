@@ -1,7 +1,5 @@
-﻿@model YouChew.Models.Restaurant
-
-@{
-    ViewBag.Title = "YouChew - " + Model.name;
+﻿@{
+    ViewBag.Title = "YouChew Geolocator";
 }
 
 <html>
@@ -75,57 +73,4 @@
 </script>
 
 </body>
-</html> 
-
-
-<!-- <h2>@Model.name</h2>
-
-<br />
-
-<div style="float: left">
-<table>
-    <tr>
-        <td>
-            <img src="../../Images/kfc.jpg" width="200px" height="200px" />
-        </td>
-        <td valign="top">
-            @Model.cuisine
-        </td>
-    </tr>
-    <tr>
-        <td>
-            Location: @Model.location<br />
-            Phone: @Model.phone
-        </td>
-    </tr>
-</table>
-</div>
-
-<div id ="map" style="width: 304px; position: relative; height: 238px; float: right"></div>
-
-
-
-<script type="text/javascript" 
-    src="http://maps.googleapis.com/maps/api/js?key=AIzaSyAa94QkxbxRUf2rgdeutpcbWlsdZuoeGNY&sensor=true">
-</script>
-
-<script type="text/javascript">
-    function InitializeMap() {
-        var latlng = new google.maps.LatLng(45, 45);
-        var myOptions = {
-            zoom: 8,
-            center: latlng,
-            mapTypeId: google.maps.MapTypeId.ROADMAP
-        };
-        var map = new google.maps.Map(document.getElementById("map"), myOptions);
-        var marker = new google.maps.Marker
-        (
-            {
-                position: new google.maps.LatLng(45, 45),
-                map: map,
-                title: 'Click me'
-            }
-        );
-    }
-    window.onload = InitializeMap;
-</script> -->
+</html>

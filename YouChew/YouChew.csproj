@@ -213,6 +213,9 @@
     <Content Include="Content\themes\base\images\zoom-out.png" />
     <Content Include="Content\themes\base\jquery-ui.css" />
     <Content Include="Content\themes\base\mapbox.css" />
+    <Content Include="Images\btn-index-findrestaurant-click.png" />
+    <Content Include="Images\btn-index-findrestaurant-hover.png" />
+    <Content Include="Images\btn-index-findrestaurant.png" />
     <Content Include="Scripts\jquery.ba-bbq.js" />
     <Content Include="Content\themes\base\jquery.ui.accordion.css" />
     <Content Include="Content\themes\base\jquery.ui.all.css" />
