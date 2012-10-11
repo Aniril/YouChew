@@ -57,11 +57,10 @@
 
 		                 $.getJSON(request,
 		                   function (data) {
-		                        var i = 0;
-		                       $.each(data.response.categories, function () {
-		                           if (data.response[i].name == 'Food') {
-		                               firstsearch = data.response;
-		                           }
+		                       var i = 0;
+		                       $.each(data.response.categories, function (i, item) {
+		                           var object = data.response.categories;
+		                            console.log(object[i]);
 		                           i++;
 		                       });
 		                       console.log(firstsearch);
