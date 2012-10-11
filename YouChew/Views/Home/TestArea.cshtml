@@ -1,7 +1,7 @@
 ﻿@{
     //Layout = null;
     ViewBag.Title = "Test Area";
-    Layout = "~/Views/Shared/_LayoutTest.cshtml";
+    //Layout = "~/Views/Shared/_LayoutTest.cshtml";
 }
 
 
@@ -12,14 +12,10 @@
     </div>
 }
 
-@section bodycontent {
-    This is the non-collapsible section.
-}
+@section collapsible{
 
-@section collapsible {
-    <section>
-        This is the collapsible section.
-    </section>
+    <div data-collapse>
+        <span class="float-right">Click Me</span>
+            <div class="featured">This is where collapsible Stuff goes.</div>
+    </div>
 }
-
-Test one two. This is where stuff ends up if you don't specify a section.

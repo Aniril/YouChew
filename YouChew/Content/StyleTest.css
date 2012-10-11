@@ -34,7 +34,7 @@
 }
     #body #bodycontent
     {
-        padding: 0em 1em 0em 1em;
+        padding: 0em 1em 1em 1em;
     }
 
     #body a 
@@ -71,6 +71,7 @@ header h1
     text-shadow: 0.1em 0.1em 0.2em #000;
 }
 
+
 .featured
 {
     background-color: #369;
@@ -80,9 +81,16 @@ header h1
     margin: 1em 0em 1em 0em;
 }
 
+
+
+#body header 
+{
+    padding: 0em 1em 1em 1em;
+}
+
 header 
 {
-    padding: 0em 1em 2em 1em;
+    padding-bottom: 2em;
 }
 
 footer 
