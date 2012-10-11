@@ -1,5 +1,5 @@
 ﻿body {
-    background-color: #fff;
+    background-color: #ccc;
 }
 
 .float-left  {
@@ -15,18 +15,60 @@
     clear: both;
 }
 
-
+#bodywrapper 
+{
+    width: 750px;
+    max-width: 100%;
+    margin: auto;
+}
 
 #body {
     background-color: #369;
     border-radius: 1em;
-    padding: 1em 0em 1em 0em;
-    box-shadow: 5px 5px 20px #000;
-    width: 750px;
-    max-width: 100%;
-    margin: 50px auto;
+    padding: 1em 0em 0em 0em;
+    box-shadow: .5em .5em 1.5em #000;
+    margin: 50px 0px 50px 0px;
+    width: 100%;
     color: White;
     overflow: hidden;
+}
+    #body #bodycontent
+    {
+        padding: 0em 1em 0em 1em;
+    }
+
+    #body a 
+    {
+        color: White;
+    }
+    
+    nav 
+    {
+        display: block;
+        margin: auto;
+    }
+    
+    ul#menu 
+    {
+        
+    }
+    
+    ul#menu li {
+        display: inline;
+        list-style: none;
+        padding-left: 5px;
+        padding-right: 5px;
+    }
+    
+h1, h2, h3, h4, h5, h6 
+{
+    font-family:Verdana;
+}
+
+header h1
+{
+    color: #fff;
+    text-shadow: 0.1em 0.1em 0.2em #000;
 }
 
 .featured
@@ -34,7 +76,7 @@
     background-color: #369;
     box-shadow: inset 0px 5px 20px #003;
     clear: both;
-    padding: 1px 1em 1em 1em;
+    padding: 2em 1em 1em 1em;
     margin: 1em 0em 1em 0em;
 }
 
@@ -45,5 +87,5 @@ header
 
 footer 
 {
-    padding: 0em 1em 0em 1em;
+    padding: 0em 1em .5em 1em;
 }
