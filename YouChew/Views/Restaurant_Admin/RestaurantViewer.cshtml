@@ -13,7 +13,10 @@
         @Html.Partial("_Scripts")
 
 		<script type="text/javascript">
-		     
+
+		    var token;
+		    var firstsearch;
+		    var paramsearch;
 		     var config = {
 		          apiKey: 'JK2MVQ3FRVPYDXOFCJMXECVA3OLWI3LTDF4UNUW3BLW40DKT',
 		          authUrl: 'https://foursquare.com/',
@@ -25,43 +28,71 @@
 		          var url = config.authUrl + 'oauth2/authenticate?response_type=token&client_id=' + config.apiKey +
      		          '&redirect_uri=' + encodeURIComponent(redirect) +
           		          '&state=' + encodeURIComponent($.bbq.getState('req') || 'users/self');
-		          console.log(url);
-		          //window.location.href = url;
+		          //console.log(url);
+		          window.location.href = url;
 		     };
 
+             //For foursquare token
 		     if ($.bbq.getState('access_token')) {
 		          // If there is a token in the state, consume it
-		          var token = $.bbq.getState('access_token');
+		          token = $.bbq.getState('access_token');
 		          console.log(token);
 		          $.bbq.pushState({ }, 2);
-		     } else if ($.bbq.getState('error')) {
+		      } else if ($.bbq.getState('error')) {
+		          //console.log($.bbq.getState().toSource());
 		     } else {
 		          doAuthRedirect();
 		     }
 
 
-		      //HTML 5 geolocation
-		     navigator.geolocation.getCurrentPosition(function (data) {
-		         var lat = data['coords']['latitude'];
-		         var lng = data['coords']['longitude'];
-		         /* Create map. */
-		         var map = new L.Map('map_canvas').setView(new L.LatLng(lat, lng), 15);
-		         console.log("Map stuff"+map.dimensions);
-		         /**
-		         * This is a sample map url that you need to change.
-		         * Sign up at http://mapbox.com/foursquare for a custom map url.
-		         */
-		         var mapboxUrl = 'https://tiles.mapbox.com/youchewteam/map/map-e1chialb';
-		         // mapbox.auto(mapboxUrl);
 
+		     $(document).ready(function () {
+		         $('#search').click(function () {
+		             var request;
+		             navigator.geolocation.getCurrentPosition(function (data) {
+		                 var lat = data['coords']['latitude'];
+		                 var lng = data['coords']['longitude'];
+		                 var url = "https://api.foursquare.com/v2/venues/categories";
+		                 request = url + "?&oauth_token=" + token; //+ "?ll=" + lat + "," + lng + "&query="+ "" + "&oauth_token=" + token;
 
-		         //wax.tilejson(mapboxUrl, function(tilejson) { map.addLayer(new wax.leaf.connector(tilejson)) })
+		                 $.getJSON(request,
+		                   function (data) {
+		                        var i = 0;
+		                       $.each(data.response.categories, function () {
+		                           if (data.response[i].name == 'Food') {
+		                               firstsearch = data.response;
+		                           }
+		                           i++;
+		                       });
+		                       console.log(firstsearch);
+		                   });
+
+		             });
+		         });
 		     });
-		     
+
+		          //HTML 5 geolocation
+		          navigator.geolocation.getCurrentPosition(function(data) {
+		               var lat = data['coords']['latitude'];
+		               var lng = data['coords']['longitude'];
+		               /* Create map. */
+		               var map = new L.Map('map_canvas').setView(new L.LatLng(lat, lng), 15);
+		               //console.log("Map stuff"+map.dimensions);
+		               /**
+		             * This is a sample map url that you need to change.
+		             * Sign up at http://mapbox.com/foursquare for a custom map url.
+		             */
+		               var mapboxUrl = 'https://tiles.mapbox.com/youchewteam/map/map-e1chialb';
+		               // mapbox.auto(mapboxUrl);
+
+
+		               //wax.tilejson(mapboxUrl, function(tilejson) { map.addLayer(new wax.leaf.connector(tilejson)) })
+		          });	     
 
 		</script>
 	</head>
 	<body>
-		<div style="width: 100%;height: 100%;" id="map_canvas"></div>
+			<input type="button" id="search" value="Search"/>
+			<div style="width: 100%;height: 100%;" id="map_canvas"></div>
 	</body>
 </html>
