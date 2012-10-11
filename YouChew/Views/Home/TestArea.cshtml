@@ -5,9 +5,21 @@
 }
 
 
-@section featured {
-    <section class="featured">
-        <h1>Yo yo yo. :I</h1>
-        Going to make this part collapsible. Feel free to throw color scheme suggestions at me.
+@section top {
+    <div class="float-left" id="search">
+                @Html.TextBox("text search")
+                Where are you?
+    </div>
+}
+
+@section bodycontent {
+    This is the non-collapsible section.
+}
+
+@section collapsible {
+    <section>
+        This is the collapsible section.
     </section>
 }
+
+Test one two. This is where stuff ends up if you don't specify a section.

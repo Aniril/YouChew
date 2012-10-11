@@ -12,27 +12,42 @@
 
 <body>
     <header>
+        <div class="float-left"><h1>Welcome to You Chew</h1></div>
         <div class="float-right">
             <section id="login">
                 <fb:login-button autologoutlink="true"></fb:login-button>
             </section>
         </div>
     </header>
-    <div id="body">
-        <header>
-            <div class="float-left" id="search">
-                @Html.TextBox("text search")
-                Going to make this a search box.
+    <div id="bodywrapper">
+        <div id="body">
+            <header>
+                @RenderSection("top", required: false)
+            </header>
+            <div id="bodycontent">@RenderSection("bodycontent", required: false)</div>
+            <div data-collapse>
+                <span class="float-right">Click Me</span>
+                <div class="featured">
+                    @RenderSection("collapsible", required: false)
+                </div>
             </div>
-        </header>
-        <div data-collapse>
-            <span class="float-right">Click Me</span>
-            @RenderSection("featured", required: false)
+            <footer class="clear-both">
+                <nav>
+                    <ul id="menu" align="center">
+                        <li>@Html.ActionLink("Home", "Index", "Home")</li>
+                        <li>@Html.ActionLink("About", "About", "Home")</li>
+					    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+					    <li>@Html.ActionLink("Users","Index","User_Admin")</li>
+                        <li>@Html.ActionLink("Restaurants","Index","Restaurant_Admin")</li>
+					    <li>@Html.ActionLink("MapsTest", "MapsTest", "ViewTests")</li>
+					    <li>@Html.ActionLink("Test Area","TestArea","Home")</li>
+                    </ul>
+                </nav>
+            </footer>
         </div>
-        <footer class="clear-both">Boop. I'm a footer.</footer>
+        <footer>@RenderBody()</footer>
     </div>
-    @RenderBody()
-    <footer></footer>
+    
     @Scripts.Render("~/bundles/jquery")
         @RenderSection("scripts", required: false)
         <div id="fb-root"></div>
