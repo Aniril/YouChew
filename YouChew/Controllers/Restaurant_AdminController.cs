@@ -41,13 +41,33 @@ namespace YouChew.Controllers
 			string getRequest = reqData.categoryUrl +"?ll="+longitude+","+latitude+ reqData.authUrlClient + reqData.authUrlClientSecret;
 			webClient.Headers[HttpRequestHeader.ContentType] = "application/x-www-form-urlencoded";
 			string responseArray = webClient.DownloadString(getRequest);
-			//JObject o = JObject.Parse(responseArray);
-			var jss = new JavaScriptSerializer();
+			var root = JObject.Parse(responseArray);
+			IEnumerable<JToken> categories = new List<JToken>();
+			categories = root["response"]["categories"][2]["categories"][0];
+			List<Category> subcategories = new List<Category>();
 
-			var parsejson = jss.Deserialize<Category>(responseArray);
-			System.Diagnostics.Debug.WriteLine(parsejson);
+			for (int i = 0; i < 85;i++ )
+			{
+				subcategories.Add(new Category
+									{
+										id = (string)root["response"]["categories"][2]["categories"][i]["id"],
+										name = (string)root["response"]["categories"][2]["categories"][i]["name"],
+										icon = (string)root["response"]["categories"][2]["categories"][i]["icon"]
+									});
+				//System.Diagnostics.Debug.WriteLine(subcategories.First().id);
+			}
 
-			return View();
+			
+
+				//subcategories.Add(new Category
+					//				{
+				
+				//			});
+
+
+			
+
+			return View(subcategories);
 		}
 
         //

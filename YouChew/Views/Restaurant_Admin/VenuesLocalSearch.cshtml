@@ -1,5 +1,14 @@
-﻿@{
+﻿@model List<YouChew.Models.Category>
+
+@{
     ViewBag.Title = "VenuesLocalSearch";
 }
 
 <h2>VenuesLocalSearch</h2>
+
+@foreach (var item in Model)
+{
+    @Html.Raw(item.name)
+	<img src="@(item.icon)" />
+    <br/>
+}
