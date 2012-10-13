@@ -12,9 +12,7 @@
         <script type="text/javascript" src="@Url.Content("~/Scripts/jquery-1.7.1.min.js")"></script>
         @Html.Partial("_Scripts")
 
-		<script type="text/javascript">
-
-		    var token;
+		@*    var token;
 		    var firstsearch;
 		    var paramsearch;
 		     var config = {
@@ -69,29 +67,31 @@
 		             });
 		         });
 		     });
+*@
+	<script type="text/javascript">
+	    //HTML 5 geolocation
+	    $(document).ready(function () {
+	        $('#search').click(function () {
 
-		          //HTML 5 geolocation
-		          navigator.geolocation.getCurrentPosition(function(data) {
-		               var lat = data['coords']['latitude'];
-		               var lng = data['coords']['longitude'];
-		               /* Create map. */
-		               var map = new L.Map('map_canvas').setView(new L.LatLng(lat, lng), 15);
-		               //console.log("Map stuff"+map.dimensions);
-		               /**
-		             * This is a sample map url that you need to change.
-		             * Sign up at http://mapbox.com/foursquare for a custom map url.
-		             */
-		               var mapboxUrl = 'https://tiles.mapbox.com/youchewteam/map/map-e1chialb';
-		               // mapbox.auto(mapboxUrl);
+	            navigator.geolocation.getCurrentPosition(function (data) {
+	                var lat = data['coords']['latitude'];
+	                var lng = data['coords']['longitude'];
+	                var locationData = { latitude: lat, longitude: lng };
 
-
-		               //wax.tilejson(mapboxUrl, function(tilejson) { map.addLayer(new wax.leaf.connector(tilejson)) })
-		          });	     
+	                $.ajax({
+	                    url: '@Url.Action("VenuesLocalSearch")',
+	                    type: 'GET',
+	                    data: locationData,
+	                    success: function (result) {
+	                    }
+	                });
+	            });
+	        });
+	    });
 
 		</script>
 	</head>
 	<body>
-			<input type="button" id="search" value="Search"/>
-			<div style="width: 100%;height: 100%;" id="map_canvas"></div>
+			<input type="button" id="search" value="Search Venues Around Me"/>
 	</body>
 </html>

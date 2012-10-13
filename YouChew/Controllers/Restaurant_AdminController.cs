@@ -1,10 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.Specialized;
 using System.Data;
 using System.Data.Entity;
 using System.Linq;
+using System.Net;
+using System.Text;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Script.Serialization;
+using Newtonsoft.Json.Linq;
 using YouChew.Models;
 using YouChew.Models.ORM;
 
@@ -27,10 +32,28 @@ namespace YouChew.Controllers
 			return View();
 		}
 
+		[HttpGet]
+		public ActionResult VenuesLocalSearch(string longitude, string latitude)
+		{
+
+			WebClient webClient = new WebClient();
+			POSTRequest reqData = new POSTRequest();
+			string getRequest = reqData.categoryUrl +"?ll="+longitude+","+latitude+ reqData.authUrlClient + reqData.authUrlClientSecret;
+			webClient.Headers[HttpRequestHeader.ContentType] = "application/x-www-form-urlencoded";
+			string responseArray = webClient.DownloadString(getRequest);
+			//JObject o = JObject.Parse(responseArray);
+			var jss = new JavaScriptSerializer();
+
+			var parsejson = jss.Deserialize<Category>(responseArray);
+			System.Diagnostics.Debug.WriteLine(parsejson);
+
+			return View();
+		}
+
         //
         // GET: /Restaurant_Admin/Details/5
 
-        public ActionResult Details(Guid id)
+    	public ActionResult Details(Guid id)
         {
             Restaurant restaurant = db.Restaurants.Find(id);
             if (restaurant == null)

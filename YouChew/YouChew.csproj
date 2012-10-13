@@ -183,10 +183,12 @@
     <Compile Include="Models\ORM\GenericRepository.cs" />
     <Compile Include="Models\ORM\SiteInit.cs" />
     <Compile Include="Models\ORM\UnitOfWork.cs" />
+    <Compile Include="Models\POSTRequest.cs" />
     <Compile Include="Models\Restaurant.cs" />
     <Compile Include="Models\Role.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Models\ORM\SiteContext.cs" />
+    <Compile Include="Models\Category.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -394,6 +396,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Shared\_LayoutBackup.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Restaurant_Admin\VenuesLocalSearch.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
