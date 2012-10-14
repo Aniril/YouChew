@@ -5,6 +5,8 @@ using System.Web;
 using System.Web.Mvc;
 using YouChew.Models;
 using YouChew.Models.ORM;
+using System.Net;
+using Newtonsoft.Json.Linq;
 
 namespace YouChew.Controllers
 {
@@ -40,8 +42,28 @@ namespace YouChew.Controllers
         {
             ViewBag.Lat = latitude;
             ViewBag.Lng = longitude;
-            
-            return View();
+
+            WebClient webClient = new WebClient();
+            POSTRequest reqData = new POSTRequest();
+            string getRequest = reqData.searchUrl + "?ll=" + latitude + "," + longitude + reqData.authUrlClient + reqData.authUrlClientSecret;
+            webClient.Headers[HttpRequestHeader.ContentType] = "application/x-www-form-urlencoded";
+            string responseArray = webClient.DownloadString(getRequest);
+            var root = JObject.Parse(responseArray);
+            IEnumerable<JToken> search = new List<JToken>();
+            search = root["response"]["groups"][0]["items"];
+            List<Restaurant> subsearch = new List<Restaurant>();
+
+            for (int i = 0; i < 12; i++)
+            {
+                subsearch.Add(new Restaurant
+                {
+                    //Id = (int)root["response"]["categories"][2]["categories"][i]["id"],
+                    name = (string)root["response"]["groups"][0]["items"][i]["venue"]["name"],
+                    latitude = (float)root["response"]["groups"][0]["items"][i]["venue"]["location"]["lat"],
+                    longitude = (float)root["response"]["groups"][0]["items"][i]["venue"]["location"]["lng"]
+                });
+            }
+            return View(subsearch);
         }
 
 		public ActionResult Critiques(Guid id)

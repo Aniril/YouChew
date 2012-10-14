@@ -19,5 +19,7 @@ namespace YouChew.Models
 		public string phone { get; set; }
 		public int likes { get; set; }
 		public int plusone { get; set; }
+        public float latitude { get; set; }
+        public float longitude { get; set; }
 	}
 }

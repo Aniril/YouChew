@@ -1,4 +1,6 @@
-﻿@{
+﻿@model List<YouChew.Models.Restaurant>
+
+@{
     ViewBag.Title = "YouChew Geolocator";
 }
 
@@ -28,23 +30,27 @@
 
 
 <script type="text/javascript">
-    var features = [{
-        "geometry": { "type": "Point", "coordinates": [-90, 30]},
-        "properties": {
-            "image": "../../Images/kfc.jpg",
-            "name": "Restaurant",
-            "url": "Restaurant/1",
-            "location": "New Orleans, LA"
-        }
-    }, {
-        "geometry": { "type": "Point", "coordinates": [-90.5, 30]},
-        "properties": {
-            "image": "../../Images/kfc.jpg",
-            "name": "Restaurant 2",
-            "url": "Restaurant/2",
-            "location": "Laplace, LA"
-        }
-    }];
+    var curLat = @ViewBag.Lat;
+    var curLng = @ViewBag.Lng;
+
+    var features = [
+    @foreach(var item in Model)
+    {
+        <text>
+            {
+                "geometry": { "type": "Point", "coordinates": [@item.longitude, @item.latitude]},
+                "properties": {
+                    "image": "../../Images/kfc.jpg",
+                    "name": "@item.name",
+                    "url": "Restaurant/1",
+                    "location": "location"
+                }
+            },
+        </text>
+    }
+    ];
+
+    
     
     // Create the Map
     var m = mapbox.map('map').zoom(2).center({ lat: 0, lon: 0 });
@@ -65,27 +71,27 @@
 
     // Add Initial Marker
     m.zoom(11).center({
-          lat: @ViewBag.Lat,
-          lon: @ViewBag.Lng
+          lat: curLat,
+          lon: curLng
     });
     markerLayer.add_feature({
           geometry: {
-              coordinates: [
-                  @ViewBag.Lat,
-                  @ViewBag.Lng]
+              coordinates: [curLat, curLng]
           },
           properties: {
               'marker-color': '#000',
-              'marker-symbol': 'star-stroked',
+              'marker-symbol': 'star-stroked'
           }
     });
+
+    
 
     // Add Interaction
     interaction.formatter(function(feature) {
         var o = '<center><a target="_blank" href="' + feature.properties.url + '">' +
             '<img src="' + feature.properties.image + '" width=150px height=150px>' +
-            '<h2>' + feature.properties.name + '</h2>' +
-            '</a><p>'+ feature.properties.location + '</p>' +
+            '</a><p><b>' + feature.properties.name + '</p></b>' +
+            '<p>'+ feature.properties.location + '</p>' +
             '</center>';
 
         return o;

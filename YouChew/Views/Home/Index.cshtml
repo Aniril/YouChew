@@ -48,8 +48,6 @@
 
     document.getElementById("locate").onclick = function (e) {
         document.getElementById("PostMessage").innerHTML = "Finding Local Venues...";
-        e.preventDefault();
-        e.stopPropagation();
         getPosition();
     }
 </script>
