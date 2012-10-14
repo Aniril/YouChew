@@ -53,7 +53,7 @@ namespace YouChew.Controllers
             search = root["response"]["groups"][0]["items"];
             List<Restaurant> subsearch = new List<Restaurant>();
 
-            for (int i = 0; i < 12; i++)
+            for (int i = 0; i < search.Count(); i++)
             {
                 subsearch.Add(new Restaurant
                 {
