@@ -35,6 +35,15 @@ namespace YouChew.Controllers
             return View();
         }
 
+        [HttpPost]
+        public ActionResult Geolocator(string latitude, string longitude)
+        {
+            ViewBag.Lat = latitude;
+            ViewBag.Lng = longitude;
+            
+            return View();
+        }
+
 		public ActionResult Critiques(Guid id)
 		{
 			IEnumerable<Critique> morestuff = uow.CritiqueRepository.Get(crit => crit.restaurant != null );

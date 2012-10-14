@@ -2,10 +2,54 @@
     ViewBag.Title = "Home Page";
 }
 
-
-
-<a href="../Restaurant/Geolocator"><img src="../../Images/btn-index-findrestaurant.png" 
+<a href="#" id="locate"><img src="../../Images/btn-index-findrestaurant.png" 
                                         onmouseout="this.src='../../Images/btn-index-findrestaurant.png'"
                                         onmouseover="this.src='../../Images/btn-index-findrestaurant-hover.png'"
                                         onmousedown="this.src='../../Images/btn-index-findrestaurant-click.png'"
                                         onmouseup="this.src='../../Images/btn-index-findrestaurant-hover.png'" /></a>
+
+<br />
+<br />
+
+<center><div id="PostMessage"></div></center>
+
+<script type="text/javascript">
+    var latitude;
+    var longitude;
+
+    function getPosition() {
+        navigator.geolocation.getCurrentPosition(
+            function (position) {
+                latitude = position.coords.latitude;
+                longitude = position.coords.longitude;
+                document.getElementById("PostMessage").innerHTML = latitude + " " + longitude;
+
+                var form = document.createElement("form");
+                form.setAttribute("method", "post");
+                form.setAttribute("action", "../Restaurant/Geolocator");
+
+                var latField = document.createElement("input");
+                latField.setAttribute("type", "hidden");
+                latField.setAttribute("name", "latitude");
+                latField.setAttribute("value", latitude);
+                form.appendChild(latField);
+
+                var lngField = document.createElement("input");
+                lngField.setAttribute("type", "hidden");
+                lngField.setAttribute("name", "longitude");
+                lngField.setAttribute("value", longitude);
+                form.appendChild(lngField);
+
+                document.body.appendChild(form);
+                form.submit();
+            }
+        );
+    }
+
+    document.getElementById("locate").onclick = function (e) {
+        document.getElementById("PostMessage").innerHTML = "Finding Local Venues...";
+        e.preventDefault();
+        e.stopPropagation();
+        getPosition();
+    }
+</script>

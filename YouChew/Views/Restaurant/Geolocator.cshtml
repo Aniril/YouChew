@@ -19,7 +19,7 @@
     <br />
     <br />
 
-    <a href='#' id='geolocate' style="font-size: x-large">Find Current Location</a>
+    <a href='#' id='geolocate' style="font-size: x-large">Refresh Current Location</a>
 </center>
 
 <br />
@@ -27,7 +27,7 @@
 <div id='map'></div>
 
 
-<script>
+<script type="text/javascript">
     var features = [{
         "geometry": { "type": "Point", "coordinates": [-90, 30]},
         "properties": {
@@ -62,6 +62,23 @@
     var restaurantLayer = mapbox.markers.layer().features(features);
     var interaction = mapbox.markers.interaction(restaurantLayer);
     m.addLayer(restaurantLayer);
+
+    // Add Initial Marker
+    m.zoom(11).center({
+          lat: @ViewBag.Lat,
+          lon: @ViewBag.Lng
+    });
+    markerLayer.add_feature({
+          geometry: {
+              coordinates: [
+                  @ViewBag.Lat,
+                  @ViewBag.Lng]
+          },
+          properties: {
+              'marker-color': '#000',
+              'marker-symbol': 'star-stroked',
+          }
+    });
 
     // Add Interaction
     interaction.formatter(function(feature) {
