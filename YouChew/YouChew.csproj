@@ -180,7 +180,6 @@
     <Compile Include="Models\AccountMembershipProvider.cs" />
     <Compile Include="Models\AccountModels.cs" />
     <Compile Include="Models\Critique.cs" />
-    <Compile Include="Models\FacebookUser.cs" />
     <Compile Include="Models\ORM\AccountRepository.cs" />
     <Compile Include="Models\ORM\GenericRepository.cs" />
     <Compile Include="Models\ORM\SiteInit.cs" />
@@ -388,9 +387,6 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\Account\UserDetails.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
     <Content Include="Views\Restaurant_Admin\RestaurantViewer.cshtml" />
   </ItemGroup>
   <ItemGroup>
@@ -401,6 +397,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Restaurant_Admin\VenuesLocalSearch.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Shared\_FacebookPartial.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

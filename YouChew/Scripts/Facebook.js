@@ -1,4 +1,64 @@
 ﻿function InitialiseFacebook(appId) {
+    window.fbAsyncInit = function () {
+        FB.init({
+            appId: appId,
+            cookie: true,
+            status: true,
+            xfbml: true,
+            oauth: true
+        });
+
+        function authStuff(response) {
+            var button = document.getElementById('fb-auth');
+            //assuming logged in    
+            if (response.authResponse) {
+                console.log('Welcome! Fetching your information...');
+                var userInfo = document.getElementById('user-info');
+                FB.api('/me', function (response) {
+                    userInfo.innerHTML = 'Welcome, ' + response.name + '  <img src="https://graph.facebook.com/'
+                    + response.id + '/picture">';
+                    button.innerHTML = 'Logout';
+                });
+                //onClick to logout
+                button.onclick = function () {
+                    FB.logout(function (response) {
+                        var userInfo = document.getElementById('user-info');
+                        userInfo.innerHTML = "";
+                    });
+                };
+            } else {
+                button.innerHTML = 'Login';
+
+                button.onclick = function () {
+                    FB.login(function (response) {
+                        if (response.authResponse) {
+                            FB.api('/me', function (response) {
+                                var userInfo = document.getElementById('user-info');
+                                userInfo.innerHTML = response.name
+                                + '<img src="https://graph.facebook.com/'
+                                + response.id + '/picture">';
+                            });
+                        } else {
+                            console.log('User cancelled login or did not fully authorize.');
+                        }
+                    }, { scope: 'email,publish_stream' });
+                }
+            }
+        }
+        FB.getLoginStatus(authStuff);
+        FB.Event.subscribe('auth.statusChange', authStuff);
+    };
+
+    (function () {
+        var e = document.createElement('script');
+        e.src = document.location.protocol + '//connect.facebook.net/en_US/all.js';
+        e.async = true;
+        document.getElementById('fb-root').appendChild(e);
+    } ());
+}
+
+/*
+function InitialiseFacebook(appId) {
 
     window.fbAsyncInit = function () {
         FB.init({
@@ -51,3 +111,4 @@
     } (document));
 
 }
+*/

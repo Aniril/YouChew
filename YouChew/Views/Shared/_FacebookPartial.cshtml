@@ -1,14 +1,13 @@
-﻿<fb:login-button autologoutlink="true"></fb:login-button>
-@if (Session["accessToken"] != null)
-{
-    <p>Facebook Access Token: @Session["accessToken"]</p>
-    <p>Facebook User Id: @Session["FBid"]</p>    
-}
-<div id="fb-root"></div>
+﻿<script src="@Url.Content("~/Scripts/Facebook.js")" type="text/javascript"></script>
 <script src="@Url.Content("~/Scripts/jquery-1.7.1.min.js")" type="text/javascript"></script>
-<script src="@Url.Content("~/Scripts/Facebook.js")" type="text/javascript"></script>
 <script type="text/javascript">
     $(function () {
         InitialiseFacebook(@System.Configuration.ConfigurationManager.AppSettings["FacebookAppId"]);
     });
 </script>
+<div style="vertical-align:bottom;">
+    <div id="fb-root"></div>
+    <div><button id="fb-auth">Login</button></div>
+    <div id="user-info"></div>
+    
+</div> 
