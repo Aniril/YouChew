@@ -15,7 +15,7 @@
                 console.log('Welcome! Fetching your information...');
                 var userInfo = document.getElementById('user-info');
                 FB.api('/me', function (response) {
-                    userInfo.innerHTML = 'Welcome, ' + response.name + '  <img src="https://graph.facebook.com/'
+                    userInfo.innerHTML = 'Welcome, ' + response.name + ' <img src="https://graph.facebook.com/'
                     + response.id + '/picture">';
                     button.innerHTML = 'Logout';
                 });
@@ -35,7 +35,7 @@
                             FB.api('/me', function (response) {
                                 var userInfo = document.getElementById('user-info');
                                 userInfo.innerHTML = response.name
-                                + '<img src="https://graph.facebook.com/'
+                                + ' <img src="https://graph.facebook.com/'
                                 + response.id + '/picture">';
                             });
                         } else {

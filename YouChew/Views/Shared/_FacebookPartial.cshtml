@@ -5,9 +5,13 @@
         InitialiseFacebook(@System.Configuration.ConfigurationManager.AppSettings["FacebookAppId"]);
     });
 </script>
-<div style="vertical-align:bottom;">
-    <div id="fb-root"></div>
-    <div><button id="fb-auth">Login</button></div>
-    <div id="user-info"></div>
-    
-</div> 
+<div id="fb-root" style="display:none"></div>   
+<table>
+    <tr style="height: 50; vertical-align:bottom;">
+        <td>
+            <button id="fb-auth">Login</button>
+        </td><td>
+            <div id="user-info"></div>
+        </td>
+    </tr>
+</table>
