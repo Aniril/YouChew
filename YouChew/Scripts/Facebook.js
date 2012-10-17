@@ -8,11 +8,12 @@
             oauth: true
         });
 
-        FB.Event.subscribe('auth.login', function(response) {  
+        var userInfo = document.getElementById('user-info');
+
+        FB.Event.subscribe('auth.login', function (response) {
             if (response.authResponse) {
                 FB.api('/me', function (response) {
-                    var userInfo = document.getElementById('user-info');
-                    userInfo.innerHTML = response.name
+                    userInfo.innerHTML = 'Welcome ' + response.name
                     + ' <img src="https://graph.facebook.com/'
                     + response.id + '/picture">';
                 });
@@ -21,10 +22,23 @@
             }
         });
 
-        FB.Event.subscribe('auth.logout', function(response) {
-            var userInfo = document.getElementById('user-info');
+        FB.Event.subscribe('auth.logout', function (response) {
             userInfo.innerHTML = "";
-        });  
+        });
+
+        function authCheck(response) {
+            if (response.authResponse) {
+                FB.api('/me', function (response) {
+                    userInfo.innerHTML = 'Welcome ' + response.name
+                    + ' <img src="https://graph.facebook.com/'
+                    + response.id + '/picture">';
+                });
+            } else {
+                console.log('Error, not logged in.');
+            }
+        }
+
+        FB.Event.subscribe('auth.statusChange', authCheck);
     };
 
     (function () {
