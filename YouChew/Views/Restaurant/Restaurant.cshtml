@@ -4,6 +4,13 @@
     ViewBag.Title = "YouChew - " + Model.name;
 }
 
+<html>
+<head>
+    <script src='http://api.tiles.mapbox.com/mapbox.js/v0.6.6/mapbox.js'></script>
+    <link href='http://api.tiles.mapbox.com/mapbox.js/v0.6.6/mapbox.css' rel='stylesheet' />
+</head>
+<body>
+
 <h2>@Model.name</h2>
 
 <br />
@@ -27,31 +34,37 @@
 </table>
 </div>
 
-<div id ="map" style="width: 304px; position: relative; height: 238px; float: right"></div>
+<div id="map" style="width: 304px; position: relative; height: 238px; float: right"></div>
 
-
-
-<script type="text/javascript" 
-    src="http://maps.googleapis.com/maps/api/js?key=AIzaSyAa94QkxbxRUf2rgdeutpcbWlsdZuoeGNY&sensor=true">
-</script>
 
 <script type="text/javascript">
-    function InitializeMap() {
-        var latlng = new google.maps.LatLng(45, 45);
-        var myOptions = {
-            zoom: 8,
-            center: latlng,
-            mapTypeId: google.maps.MapTypeId.ROADMAP
-        };
-        var map = new google.maps.Map(document.getElementById("map"), myOptions);
-        var marker = new google.maps.Marker
-        (
-            {
-                position: new google.maps.LatLng(45, 45),
-                map: map,
-                title: 'Click me'
-            }
-        );
-    }
-    window.onload = InitializeMap;
+    // Create the Map
+    var m = mapbox.map('map').zoom(12).center({ lat: 35, lon: -90.5 });
+    m.addLayer(mapbox.layer().id('examples.map-4l7djmvo'));
+
+    // Zoom Controls
+    m.ui.zoomer.add();
+    m.ui.zoombox.add();
+
+    // Add Marker Layer
+    var markerLayer = mapbox.markers.layer();
+    m.addLayer(markerLayer);
+
+    // Add Initial Marker
+    m.zoom(11).center({
+        lat: 35,
+        lon: -90.5
+    });
+    markerLayer.add_feature({
+        geometry: {
+            coordinates: [-90.5, 35]
+        },
+        properties: {
+            'marker-color': '#000',
+            'marker-symbol': 'star-stroked'
+        }
+    });
 </script>
+
+</body>
+</html>
