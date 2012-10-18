@@ -96,7 +96,7 @@ h1, h2, h3, h4, h5, h6
     font-family:Verdana;
 }
 
-header h1
+#welcome h1
 {
     color: #fff;
     text-shadow: 0.1em 0.1em 0.2em #000;
@@ -114,6 +114,7 @@ header h1
 
 header 
 {
+    padding-left: 1em;
     padding-bottom: 2em;
     clear: both;
 }

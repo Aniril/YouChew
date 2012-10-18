@@ -60,7 +60,9 @@ namespace YouChew.Controllers
                     //Id = (int)root["response"]["categories"][2]["categories"][i]["id"],
                     name = (string)root["response"]["groups"][0]["items"][i]["venue"]["name"],
                     latitude = (float)root["response"]["groups"][0]["items"][i]["venue"]["location"]["lat"],
-                    longitude = (float)root["response"]["groups"][0]["items"][i]["venue"]["location"]["lng"]
+                    longitude = (float)root["response"]["groups"][0]["items"][i]["venue"]["location"]["lng"],
+                    location = (string)root["response"]["groups"][0]["items"][i]["venue"]["location"]["city"] + ", " + (string)root["response"]["groups"][0]["items"][i]["venue"]["location"]["state"],
+                    phone = (string)root["response"]["groups"][0]["items"][i]["venue"]["contact"]["formattedPhone"]
                 });
             }
             return View(subsearch);

@@ -43,7 +43,8 @@
                     "image": "../../Images/kfc.jpg",
                     "name": "@item.name",
                     "url": "Restaurant/1",
-                    "location": "location"
+                    "location": "@item.location",
+                    "phone": "@item.phone"
                 }
             },
         </text>
@@ -90,8 +91,9 @@
     interaction.formatter(function(feature) {
         var o = '<center><a target="_blank" href="' + feature.properties.url + '">' +
             '<img src="' + feature.properties.image + '" width=150px height=150px>' +
-            '</a><p><b>' + feature.properties.name + '</p></b>' +
-            '<p>'+ feature.properties.location + '</p>' +
+            '</a><p><b>' + feature.properties.name + '</b><br/>' +
+            'Location: ' + feature.properties.location + '<br/>' +
+            'Phone: ' + feature.properties.phone + '</p>' +
             '</center>';
 
         return o;
