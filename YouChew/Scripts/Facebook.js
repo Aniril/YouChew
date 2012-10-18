@@ -8,12 +8,12 @@
             oauth: true
         });
 
-        var userInfo = document.getElementById('user-info');
-
+        var facebookInfo = document.getElementById('user-info');
+        //Facebook login event
         FB.Event.subscribe('auth.login', function (response) {
             if (response.authResponse) {
                 FB.api('/me', function (response) {
-                    userInfo.innerHTML = 'Welcome ' + response.name
+                    facebookInfo.innerHTML = 'Welcome, ' + response.name
                     + ' <img src="https://graph.facebook.com/'
                     + response.id + '/picture">';
                 });
@@ -21,15 +21,16 @@
                 console.log('User cancelled login or did not fully authorize.');
             }
         });
-
+        //Facebook logout event
         FB.Event.subscribe('auth.logout', function (response) {
-            userInfo.innerHTML = "";
+            facebookInfo.innerHTML = "";
         });
 
+        //Displays info when page is changed
         function authCheck(response) {
             if (response.authResponse) {
                 FB.api('/me', function (response) {
-                    userInfo.innerHTML = 'Welcome ' + response.name
+                    facebookInfo.innerHTML = 'Welcome, ' + response.name
                     + ' <img src="https://graph.facebook.com/'
                     + response.id + '/picture">';
                 });
@@ -39,6 +40,18 @@
         }
 
         FB.Event.subscribe('auth.statusChange', authCheck);
+
+        //Displays info on user page
+        function userInfo(response) {
+            var username = document.getElementById('username');
+            var email = document.getElementById('email');
+            FB.api('/me', function (response) {
+                username.innerHTML = response.name;
+                email.innerHTML = response.email;
+            });
+        }
+
+        FB.Event.subscribe('auth.statusChange', userInfo);
     };
 
     (function () {

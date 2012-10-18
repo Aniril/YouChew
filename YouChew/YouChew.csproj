@@ -170,6 +170,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\RestaurantController.cs" />
     <Compile Include="Controllers\Restaurant_AdminController.cs" />
+    <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Controllers\User_AdminController.cs" />
     <Compile Include="Controllers\ViewTestsController.cs" />
     <Compile Include="Filters\InitializeSimpleMembershipAttribute.cs" />
@@ -400,6 +401,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Shared\_FacebookPartial.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\User\Info.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
