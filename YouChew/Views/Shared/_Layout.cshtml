@@ -2,49 +2,45 @@
 
 <html>
 <head>
-    <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width" />
     <title>@ViewBag.Title</title>
-    @Styles.Render("~/Content/StyleTest.css")
-    <!-- Render Script here -->
-    @RenderSection("pageScript", false)
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
-    <script src="../../Scripts/jquery.collapse.js"></script></head>
-
+    <link href="../../Content/bootstrap.css" rel="stylesheet" />
+    <style>
+      body {
+        padding-top: 60px; /* 60px to make the container go all the way to the bottom of the topbar */
+      }
+    </style>
+</head>
 <body>
-    <header>
-        <div class="float-left" id="welcome"><h1>Welcome to You Chew</h1></div>
-        <div class="float-right">
-            <section id="login">
-                @Html.Partial("_FacebookPartial")
-            </section>
+    <div class="navbar navbar-inverse navbar-fixed-top">
+      <div class="navbar-inner">
+        <div class="container">
+          <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </a>
+          <a class="brand" href="../Home">YouChew</a>
+          <div class="nav-collapse collapse">
+            <ul class="nav">
+              <li class="active">@Html.ActionLink("Home", "Index", "Home")</li>
+              <!--<li>@Html.ActionLink("About", "About", "Home")</li>-->
+			    <!--<li>@Html.ActionLink("Contact", "Contact", "Home")</li>-->
+			    <li>@Html.ActionLink("Users","Index","User_Admin")</li>
+                <li>@Html.ActionLink("Restaurants","Index","Restaurant_Admin")</li>
+			    <!--<li>@Html.ActionLink("MapsTest", "MapsTest", "ViewTests")</li>-->
+			    <li>@Html.ActionLink("Test Area","TestArea","Home")</li>
+                <li>@Html.ActionLink("User Info", "Info", "User")</li>
+            </ul>
+          </div>
         </div>
-    </header>
-    <div id="bodywrapper">
-        <div id="body">
-            <header>
-                @RenderSection("top", required: false)
-            </header>
-            <div id="bodycontent">@RenderBody()</div>
-			<div>@RenderSection("collapsible", required: false)</div>
-            <footer class="clear-both">
-                <nav>
-                    <ul id="menu" align="center">
-                        <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                        <!--<li>@Html.ActionLink("About", "About", "Home")</li>-->
-					    <!--<li>@Html.ActionLink("Contact", "Contact", "Home")</li>-->
-					    <li>@Html.ActionLink("Users","Index","User_Admin")</li>
-                        <li>@Html.ActionLink("Restaurants","Index","Restaurant_Admin")</li>
-					    <!--<li>@Html.ActionLink("MapsTest", "MapsTest", "ViewTests")</li>-->
-					    <li>@Html.ActionLink("Test Area","TestArea","Home")</li>
-                        <li>@Html.ActionLink("User Info", "Info", "User")</li>
-                    </ul>
-                </nav>
-            </footer>
-        </div>
-        <footer>@RenderSection("bottom", required: false)</footer>
+      </div>
+      <div style="float:right;">@Html.Partial("_FacebookPartial")</div>
     </div>
-    
-    @Scripts.Render("~/bundles/jquery")
+    <div class="container">
+        @RenderBody()
+    </div>
+    @RenderSection("pageScript", false)
+    <script src="../../Scripts/bootstrap.js"></script>
 </body>
 </html>

@@ -194,6 +194,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\bootstrap.css" />
     <Content Include="Content\Site-original.css" />
     <Content Include="Content\StyleTest.css" />
     <Content Include="Content\themes\base\images\layers.png" />
@@ -220,6 +221,9 @@
     <Content Include="Images\btn-index-findrestaurant-click.png" />
     <Content Include="Images\btn-index-findrestaurant-hover.png" />
     <Content Include="Images\btn-index-findrestaurant.png" />
+    <Content Include="Images\glyphicons-halflings-white.png" />
+    <Content Include="Images\glyphicons-halflings.png" />
+    <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\jquery.ba-bbq.js" />
     <Content Include="Content\themes\base\jquery.ui.accordion.css" />
     <Content Include="Content\themes\base\jquery.ui.all.css" />
@@ -385,7 +389,7 @@
     <Content Include="Views\Restaurant\Critiques.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\Shared\_LayoutBackup2.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Restaurant_Admin\RestaurantViewer.cshtml" />
@@ -404,6 +408,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\User\Info.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Shared\_Layout.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
