@@ -45,7 +45,7 @@ namespace YouChew.Controllers
 
             WebClient webClient = new WebClient();
             POSTRequest reqData = new POSTRequest();
-            string getRequest = reqData.searchUrl + "?ll=" + latitude + "," + longitude + reqData.authUrlClient + reqData.authUrlClientSecret;
+            string getRequest = reqData.exploreUrl + "?ll=" + latitude + "," + longitude + reqData.authUrlClient + reqData.authUrlClientSecret;
             webClient.Headers[HttpRequestHeader.ContentType] = "application/x-www-form-urlencoded";
             string responseArray = webClient.DownloadString(getRequest);
             var root = JObject.Parse(responseArray);

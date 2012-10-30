@@ -12,6 +12,7 @@ using System.Web.Script.Serialization;
 using Newtonsoft.Json.Linq;
 using YouChew.Models;
 using YouChew.Models.ORM;
+using YouChew.Services;
 
 namespace YouChew.Controllers
 {
@@ -38,10 +39,8 @@ namespace YouChew.Controllers
 
 			WebClient webClient = new WebClient();
 			POSTRequest reqData = new POSTRequest();
-			string getRequest = reqData.categoryUrl +"?ll="+longitude+","+latitude+ reqData.authUrlClient + reqData.authUrlClientSecret;
-			webClient.Headers[HttpRequestHeader.ContentType] = "application/x-www-form-urlencoded";
-			string responseArray = webClient.DownloadString(getRequest);
-			var root = JObject.Parse(responseArray);
+			var request = new FourSquareRequest();
+			var root = JObject.Parse(request.VenueCategories(longitude,latitude));
 			IEnumerable<JToken> categories = new List<JToken>();
 			categories = root["response"]["categories"][2]["categories"][0];
 			List<Category> subcategories = new List<Category>();
@@ -54,19 +53,8 @@ namespace YouChew.Controllers
 										name = (string)root["response"]["categories"][2]["categories"][i]["name"],
 										icon = (string)root["response"]["categories"][2]["categories"][i]["icon"]
 									});
-				//System.Diagnostics.Debug.WriteLine(subcategories.First().id);
+
 			}
-
-			
-
-				//subcategories.Add(new Category
-					//				{
-				
-				//			});
-
-
-			
-
 			return View(subcategories);
 		}
 
