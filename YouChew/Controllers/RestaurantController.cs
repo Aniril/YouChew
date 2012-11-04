@@ -7,6 +7,7 @@ using YouChew.Models;
 using YouChew.Models.ORM;
 using System.Net;
 using Newtonsoft.Json.Linq;
+using YouChew.Services;
 
 namespace YouChew.Controllers
 {
@@ -20,11 +21,17 @@ namespace YouChew.Controllers
         
         public ActionResult Restaurant()
         {
-            IEnumerable<Restaurant> stuff =  uow.RestaurantRepository.Get();
+            //IEnumerable<Restaurant> stuff =  uow.RestaurantRepository.Get();
 
-            return View(stuff.First());
+            return View();
         }
 
+		[HttpPost]
+		public ActionResult Restaurant(Restaurant venue)
+		{
+
+			return View(venue);
+		}
         public ActionResult RestaurantList()
         {
             IEnumerable<Restaurant> stuff = uow.RestaurantRepository.Get();
@@ -45,10 +52,8 @@ namespace YouChew.Controllers
 
             WebClient webClient = new WebClient();
             POSTRequest reqData = new POSTRequest();
-            string getRequest = reqData.exploreUrl + "?ll=" + latitude + "," + longitude + reqData.authUrlClient + reqData.authUrlClientSecret;
-            webClient.Headers[HttpRequestHeader.ContentType] = "application/x-www-form-urlencoded";
-            string responseArray = webClient.DownloadString(getRequest);
-            var root = JObject.Parse(responseArray);
+			var request = new FourSquareRequest();
+            var root = JObject.Parse(request.VenuesOrByName(latitude,longitude));
             IEnumerable<JToken> search = new List<JToken>();
             search = root["response"]["groups"][0]["items"];
             List<Restaurant> subsearch = new List<Restaurant>();
@@ -62,7 +67,8 @@ namespace YouChew.Controllers
                     latitude = (float)root["response"]["groups"][0]["items"][i]["venue"]["location"]["lat"],
                     longitude = (float)root["response"]["groups"][0]["items"][i]["venue"]["location"]["lng"],
                     location = (string)root["response"]["groups"][0]["items"][i]["venue"]["location"]["city"] + ", " + (string)root["response"]["groups"][0]["items"][i]["venue"]["location"]["state"],
-                    phone = (string)root["response"]["groups"][0]["items"][i]["venue"]["contact"]["formattedPhone"]
+                    phone = (string)root["response"]["groups"][0]["items"][i]["venue"]["contact"]["formattedPhone"],
+					icon = (string)root["response"]["groups"][0]["items"][i]["venue"]["categories"][0]["icon"]
                 });
             }
             return View(subsearch);

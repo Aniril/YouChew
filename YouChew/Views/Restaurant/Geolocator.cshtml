@@ -40,7 +40,7 @@
             {
                 "geometry": { "type": "Point", "coordinates": [@item.longitude, @item.latitude]},
                 "properties": {
-                    "image": "../../Images/kfc.jpg",
+                    "image": "@item.icon",
                     "name": "@item.name",
                     "url": "Restaurant/1",
                     "location": "@item.location",
@@ -122,7 +122,7 @@
                   },
                   properties: {
                       'marker-color': '#000',
-                      'marker-symbol': 'star-stroked',
+                      'marker-symbol': 'star-stroked'
                   }
               });
           },

@@ -19,23 +19,22 @@ namespace YouChew.Services
 			return webClient.DownloadString(getRequest);
 		}
 
+		public string VenuesOrByName(string longitude, string latitude)
+		{
+			string getRequest = reqData.exploreUrl + "?ll=" + longitude + "," + latitude + "&section=food" + reqData.authUrlClient + reqData.authUrlClientSecret;
+			webClient.Headers[HttpRequestHeader.ContentType] = "application/x-www-form-urlencoded";
+			return webClient.DownloadString(getRequest);
+		}
+		
 		public string VenuesOrByName(string longitude, string latitude, string name)
 		{
-			if(!string.IsNullOrEmpty(name))
-			{
-				string getRequest = reqData.searchUrl + "?ll=" + longitude + "," + latitude + "&query=" + name + reqData.authUrlClient + reqData.authUrlClientSecret;
-				webClient.Headers[HttpRequestHeader.ContentType] = "application/x-www-form-urlencoded";
-				return webClient.DownloadString(getRequest);
-			}
-			else
-			{
-				string getRequest = reqData.searchUrl + "?ll=" + longitude + "," + latitude + reqData.authUrlClient + reqData.authUrlClientSecret;
-				webClient.Headers[HttpRequestHeader.ContentType] = "application/x-www-form-urlencoded";
-				return webClient.DownloadString(getRequest);
-			}
 
+			string getRequest = reqData.searchUrl + "?ll=" + longitude + "," + latitude + "&query=" + name +
+			                    reqData.authUrlClient + reqData.authUrlClientSecret;
+			webClient.Headers[HttpRequestHeader.ContentType] = "application/x-www-form-urlencoded";
+			return webClient.DownloadString(getRequest);
 		}
-
+		
 		public string VenueCategories(string longitude, string latitude)
 		{
 			string getRequest = reqData.categoryUrl + "?ll=" + longitude + "," + latitude + reqData.authUrlClient + reqData.authUrlClientSecret;
@@ -45,8 +44,7 @@ namespace YouChew.Services
 
 		public string VenuesByCategory(string longitude, string latitude, string categoryId, string radius)
 		{
-			//can search using &intent=browse. Searches an entire region instead of only finding Venues closest to a point.
-			string getRequest = reqData.searchUrl + "?ll=" + longitude + "," + latitude + "&radius=" + radius + "&categoryId=" +
+			string getRequest = reqData.searchUrl + "?ll=" + longitude + "," + latitude + "&intent=browse" + "&radius=" + radius + "&categoryId=" +
 			                    categoryId + reqData.authUrlClient + reqData.authUrlClientSecret;
 			webClient.Headers[HttpRequestHeader.ContentType] = "application/x-www-form-urlencoded";
 			return webClient.DownloadString(getRequest);
