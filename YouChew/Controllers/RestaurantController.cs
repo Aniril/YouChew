@@ -38,7 +38,18 @@ namespace YouChew.Controllers
             venue.name = (string)root["response"]["venue"]["name"];
             venue.location = (string)root["response"]["venue"]["location"]["city"] + ", " + (string)root["response"]["venue"]["location"]["state"];
             venue.phone = (string)root["response"]["venue"]["contact"]["formattedPhone"];
-            venue.icon = (string)root["response"]["venue"]["photos"]["groups"][1]["items"][0]["url"];
+            try
+            {
+                int count = (int)root["response"]["venue"]["photos"]["groups"][1]["count"];
+                for (int i = 0; i < count; i++)
+                {
+                    venue.icon = venue.icon + (string)root["response"]["venue"]["photos"]["groups"][1]["items"][i]["url"] + ",";
+                }
+            }
+            catch
+            {
+            }
+            //venue.icon = (string)root["response"]["venue"]["photos"]["groups"][1]["items"][0]["url"];
             venue.latitude = (float)root["response"]["venue"]["location"]["lat"];
             venue.longitude = (float)root["response"]["venue"]["location"]["lng"];
 
