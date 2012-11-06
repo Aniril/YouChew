@@ -27,8 +27,16 @@ namespace YouChew.Controllers
         }
 
 		[HttpPost]
-		public ActionResult Restaurant(Restaurant venue)
+		public ActionResult Restaurant(string venueId)
 		{
+            var request = new FourSquareRequest();
+            var root = JObject.Parse(request.VenueById(venueId));
+            IEnumerable<JToken> venueProperties = new List<JToken>();
+            Restaurant venue = new Restaurant();
+
+            venue.Id = (string)root["response"]["venue"]["id"];
+            venue.name = (string)root["response"]["venue"]["name"];
+            venue.icon = (string)root["response"]["venue"]["photos"]["groups"][1]["items"][0]["url"];
 
 			return View(venue);
 		}
@@ -50,8 +58,6 @@ namespace YouChew.Controllers
             ViewBag.Lat = latitude;
             ViewBag.Lng = longitude;
 
-            WebClient webClient = new WebClient();
-            POSTRequest reqData = new POSTRequest();
 			var request = new FourSquareRequest();
             var root = JObject.Parse(request.VenuesOrByName(latitude,longitude));
             IEnumerable<JToken> search = new List<JToken>();
@@ -62,13 +68,16 @@ namespace YouChew.Controllers
             {
                 subsearch.Add(new Restaurant
                 {
-                    //Id = (int)root["response"]["categories"][2]["categories"][i]["id"],
-                    name = (string)root["response"]["groups"][0]["items"][i]["venue"]["name"],
-                    latitude = (float)root["response"]["groups"][0]["items"][i]["venue"]["location"]["lat"],
-                    longitude = (float)root["response"]["groups"][0]["items"][i]["venue"]["location"]["lng"],
-                    location = (string)root["response"]["groups"][0]["items"][i]["venue"]["location"]["city"] + ", " + (string)root["response"]["groups"][0]["items"][i]["venue"]["location"]["state"],
-                    phone = (string)root["response"]["groups"][0]["items"][i]["venue"]["contact"]["formattedPhone"],
-					icon = (string)root["response"]["groups"][0]["items"][i]["venue"]["categories"][0]["icon"]
+                    Id = (string)root["response"]["groups"][0]["items"][i]["id"],
+                    name = (string)root["response"]["groups"][0]["items"][i]["name"],
+                    latitude = (float)root["response"]["groups"][0]["items"][i]["location"]["lat"],
+                    longitude = (float)root["response"]["groups"][0]["items"][i]["location"]["lng"],
+                    //location = (string)root["response"]["groups"][0]["items"][i]["location"]["city"] + ", " + (string)root["response"]["groups"][0]["items"][i]["venue"]["location"]["state"],
+                    location = "loc here",
+                    //phone = (string)root["response"]["groups"][0]["items"][i]["contact"]["formattedPhone"],
+                    phone = "phone here",
+					//icon = (string)root["response"]["groups"][0]["items"][i]["categories"][0]["icon"]
+                    icon = "../../Images/kfc.jpg"
                 });
             }
             return View(subsearch);

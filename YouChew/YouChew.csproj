@@ -159,9 +159,6 @@
       <Private>True</Private>
       <HintPath>..\packages\WebGrease.1.1.0\lib\Antlr3.Runtime.dll</HintPath>
     </Reference>
-    <Reference Include="YouChew.Services">
-      <HintPath>..\YouChew.Services\bin\Debug\YouChew.Services.dll</HintPath>
-    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\AuthConfig.cs" />
@@ -184,6 +181,7 @@
     <Compile Include="Models\AccountMembershipProvider.cs" />
     <Compile Include="Models\AccountModels.cs" />
     <Compile Include="Models\Critique.cs" />
+    <Compile Include="Models\FourSquareRequest.cs" />
     <Compile Include="Models\ORM\AccountRepository.cs" />
     <Compile Include="Models\ORM\GenericRepository.cs" />
     <Compile Include="Models\ORM\SiteInit.cs" />

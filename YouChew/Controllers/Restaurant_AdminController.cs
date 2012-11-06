@@ -91,7 +91,7 @@ namespace YouChew.Controllers
 
 				if (ModelState.IsValid)
 				{
-					restaurant.Id = Guid.NewGuid();
+					//restaurant.Id = Guid.NewGuid();
 					db.Restaurants.Add(restaurant);
 					db.SaveChanges();
 					return RedirectToAction("Index");

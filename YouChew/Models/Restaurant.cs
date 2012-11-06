@@ -10,7 +10,7 @@ namespace YouChew.Models
 	public class Restaurant
 	{
 		[DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-		public Guid Id { get; set; }
+		public string Id { get; set; }
 		public DateTime addDate { get; set; }
 		public string name { get; set; }
 		public string cuisine { get; set; }

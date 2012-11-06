@@ -40,9 +40,9 @@
             {
                 "geometry": { "type": "Point", "coordinates": [@item.longitude, @item.latitude]},
                 "properties": {
+                    "id": "@item.Id",
                     "image": "@item.icon",
                     "name": "@item.name",
-                    "url": "Restaurant/1",
                     "location": "@item.location",
                     "phone": "@item.phone"
                 }
@@ -85,13 +85,12 @@
           }
     });
 
-    
-
     // Add Interaction
     interaction.formatter(function(feature) {
-        var o = '<center><a target="_blank" href="' + feature.properties.url + '">' +
-            '<img src="' + feature.properties.image + '" width=150px height=150px>' +
-            '</a><p><b>' + feature.properties.name + '</b><br/>' +
+        var o = '<center><form method="post" action="./Restaurant">' +
+            '<input type="hidden" name="venueId" value="' + feature.properties.id + '">' +
+            '<input type="image" src="' + feature.properties.image + '" width="150px" height="150px"></form>' +
+            '<p><b>' + feature.properties.name + '</b><br/>' +
             'Location: ' + feature.properties.location + '<br/>' +
             'Phone: ' + feature.properties.phone + '</p>' +
             '</center>';
