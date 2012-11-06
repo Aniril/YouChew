@@ -36,7 +36,11 @@ namespace YouChew.Controllers
 
             venue.Id = (string)root["response"]["venue"]["id"];
             venue.name = (string)root["response"]["venue"]["name"];
+            venue.location = (string)root["response"]["venue"]["location"]["city"] + ", " + (string)root["response"]["venue"]["location"]["state"];
+            venue.phone = (string)root["response"]["venue"]["contact"]["formattedPhone"];
             venue.icon = (string)root["response"]["venue"]["photos"]["groups"][1]["items"][0]["url"];
+            venue.latitude = (float)root["response"]["venue"]["location"]["lat"];
+            venue.longitude = (float)root["response"]["venue"]["location"]["lng"];
 
 			return View(venue);
 		}
@@ -68,16 +72,13 @@ namespace YouChew.Controllers
             {
                 subsearch.Add(new Restaurant
                 {
-                    Id = (string)root["response"]["groups"][0]["items"][i]["id"],
-                    name = (string)root["response"]["groups"][0]["items"][i]["name"],
-                    latitude = (float)root["response"]["groups"][0]["items"][i]["location"]["lat"],
-                    longitude = (float)root["response"]["groups"][0]["items"][i]["location"]["lng"],
-                    //location = (string)root["response"]["groups"][0]["items"][i]["location"]["city"] + ", " + (string)root["response"]["groups"][0]["items"][i]["venue"]["location"]["state"],
-                    location = "loc here",
-                    //phone = (string)root["response"]["groups"][0]["items"][i]["contact"]["formattedPhone"],
-                    phone = "phone here",
-					//icon = (string)root["response"]["groups"][0]["items"][i]["categories"][0]["icon"]
-                    icon = "../../Images/kfc.jpg"
+                    Id = (string)root["response"]["groups"][0]["items"][i]["venue"]["id"],
+                    name = (string)root["response"]["groups"][0]["items"][i]["venue"]["name"],
+                    latitude = (float)root["response"]["groups"][0]["items"][i]["venue"]["location"]["lat"],
+                    longitude = (float)root["response"]["groups"][0]["items"][i]["venue"]["location"]["lng"],
+                    location = (string)root["response"]["groups"][0]["items"][i]["venue"]["location"]["city"] + ", " + (string)root["response"]["groups"][0]["items"][i]["venue"]["location"]["state"],
+                    phone = (string)root["response"]["groups"][0]["items"][i]["venue"]["contact"]["formattedPhone"],
+                    icon = (string)root["response"]["groups"][0]["items"][i]["venue"]["categories"][0]["icon"]
                 });
             }
             return View(subsearch);

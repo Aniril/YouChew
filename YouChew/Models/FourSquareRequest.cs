@@ -21,7 +21,7 @@ namespace YouChew.Services
 
 		public string VenuesOrByName(string longitude, string latitude)
 		{
-			string getRequest = reqData.searchUrl + "?ll=" + longitude + "," + latitude + "&section=food" + reqData.authUrlClient + reqData.authUrlClientSecret;
+			string getRequest = reqData.exploreUrl + "?ll=" + longitude + "," + latitude + "&section=food" + reqData.authUrlClient + reqData.authUrlClientSecret;
 			webClient.Headers[HttpRequestHeader.ContentType] = "application/x-www-form-urlencoded";
 			return webClient.DownloadString(getRequest);
 		}

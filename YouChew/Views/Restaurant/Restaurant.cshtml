@@ -39,7 +39,7 @@
 
 <script type="text/javascript">
     // Create the Map
-    var m = mapbox.map('map').zoom(12).center({ lat: 35, lon: -90.5 });
+    var m = mapbox.map('map').zoom(12).center({ lat: @Model.latitude, lon: @Model.longitude });
     m.addLayer(mapbox.layer().id('examples.map-4l7djmvo'));
 
     // Zoom Controls
@@ -52,12 +52,12 @@
 
     // Add Initial Marker
     m.zoom(11).center({
-        lat: 35,
-        lon: -90.5
+        lat: @Model.latitude,
+        lon: @Model.longitude
     });
     markerLayer.add_feature({
         geometry: {
-            coordinates: [-90.5, 35]
+            coordinates: [@Model.longitude, @Model.latitude]
         },
         properties: {
             'marker-color': '#000',
