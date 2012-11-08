@@ -19,7 +19,7 @@
 <table>
     <tr>
         <td>
-           <div id="mainPic"></div> @*<img src="@Model.icon" width="200px" height="200px" />*@
+           <div id="map" style="width: 304px; position: relative; height: 238px"></div>
         </td>
         <td valign="top">
             @Model.cuisine
@@ -27,6 +27,7 @@
     </tr>
     <tr>
         <td>
+            <br />
             Location: @Model.location<br />
             Phone: @Model.phone
         </td>
@@ -34,16 +35,25 @@
 </table>
 </div>
 
-<div id="map" style="width: 304px; position: relative; height: 238px; float: right"></div>
+<div id="mainPic" style="float: right"></div>
+
+<div id="morPic" style="float: right"></div>
 
 
 <script type="text/javascript">
     var picStr = "@Model.icon";
     var pictures = picStr.split(",");
 
+    document.getElementById("mainPic").innerHTML = "<img src=\"" + pictures[0] + "\" width=\"200px\" height=\"200px\" />";
+    
     for(var i = 0; i < pictures.length; i++)
     {
-        document.getElementById("mainPic").innerHTML += "<img src=\"" + pictures[i] + "\" width=\"200px\" height=\"200px\" />";
+        document.getElementById("morPic").innerHTML += "<img src=\"" + pictures[i] + "\" width=\"100px\" height=\"100px\" onclick=\"changeImage(\'" + pictures[i] + "\')\" /><br/>";
+    }
+
+    function changeImage(url)
+    {
+        document.getElementById("mainPic").innerHTML = "<img src=\"" + url + "\" width=\"200px\" height=\"200px\" />";
     }
     
     // Create the Map

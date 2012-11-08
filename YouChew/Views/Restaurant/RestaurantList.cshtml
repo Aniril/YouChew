@@ -8,17 +8,20 @@
 
 <table>
 
-@foreach (var r in Model)
+@foreach (var item in Model)
 {
     <tr>
         <td>
-            <a href="Restaurant">@r.name</a>
-            <br />
-            <img src="../../Images/kfc.jpg" width="50px" height="50px" />
+            <form method="post" action="Restaurant">
+                <input type="hidden" name="venueID" value="@item.Id" />
+                <h2>@item.name</h2>
+                <br />
+                <input type="image" src="@item.icon" width="50px" height="50px" />
+            </form>
         </td>
         <td align="right">
-            Location: @r.location <br />
-            Phone: @r.phone
+            Location: @item.location <br />
+            Phone: @item.phone
         </td>
     </tr>
 }

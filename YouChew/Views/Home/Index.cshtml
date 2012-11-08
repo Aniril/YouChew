@@ -2,8 +2,11 @@
     ViewBag.Title = "Home Page";
 }
 
-<center><a href="#" id="locate" class="btn btn-large btn-info">Find Restaurants Near Me</a></center>
+<center><a href="#" id="locate" class="btn btn-large btn-info">Find Restaurants Near Me</a>
+<a href="#" id="findCity" class="btn btn-large btn-info">Find Restaurants by City</a></center>
 
+<br />
+<br />
 
 <center><div id="PostMessage"></div></center>
 
@@ -43,5 +46,9 @@
     document.getElementById("locate").onclick = function (e) {
         document.getElementById("PostMessage").innerHTML = "Finding Local Venues...";
         getPosition();
+    }
+
+    document.getElementById("findCity").onclick = function (e) {
+        document.getElementById("PostMessage").innerHTML = '<form method="post" action="../Restaurant/RestaurantList"><input type="text" name="city" /><input type="submit" value="search" /></form>';
     }
 </script>

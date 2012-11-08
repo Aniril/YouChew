@@ -62,6 +62,32 @@ namespace YouChew.Controllers
             return View(stuff);
         }
 
+        [HttpPost]
+        public ActionResult RestaurantList(string city)
+        {
+            var request = new FourSquareRequest();
+            var root = JObject.Parse(request.VenuesByCity(city));
+            IEnumerable<JToken> search = new List<JToken>();
+            search = root["response"]["groups"][0]["items"];
+            List<Restaurant> subsearch = new List<Restaurant>();
+
+            for (int i = 0; i < search.Count(); i++)
+            {
+                subsearch.Add(new Restaurant
+                {
+                    Id = (string)root["response"]["groups"][0]["items"][i]["venue"]["id"],
+                    name = (string)root["response"]["groups"][0]["items"][i]["venue"]["name"],
+                    latitude = (float)root["response"]["groups"][0]["items"][i]["venue"]["location"]["lat"],
+                    longitude = (float)root["response"]["groups"][0]["items"][i]["venue"]["location"]["lng"],
+                    location = (string)root["response"]["groups"][0]["items"][i]["venue"]["location"]["city"] + ", " + (string)root["response"]["groups"][0]["items"][i]["venue"]["location"]["state"],
+                    phone = (string)root["response"]["groups"][0]["items"][i]["venue"]["contact"]["formattedPhone"],
+                    icon = (string)root["response"]["groups"][0]["items"][i]["venue"]["categories"][0]["icon"]
+                });
+            }
+
+            return View(subsearch);
+        }
+
         public ActionResult Geolocator()
         {
             return View();

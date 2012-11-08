@@ -49,5 +49,12 @@ namespace YouChew.Services
 			webClient.Headers[HttpRequestHeader.ContentType] = "application/x-www-form-urlencoded";
 			return webClient.DownloadString(getRequest);
 		}
+
+        public string VenuesByCity(string city)
+        {
+            string getRequest = reqData.exploreUrl + "?near=" + city + "&section=food" + reqData.authUrlClient + reqData.authUrlClientSecret;
+            webClient.Headers[HttpRequestHeader.ContentType] = "application/x-www-form-urlencoded";
+            return webClient.DownloadString(getRequest);
+        }
 	}
 }
