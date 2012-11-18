@@ -25,7 +25,6 @@
         FB.Event.subscribe('auth.logout', function (response) {
             facebookInfo.innerHTML = "";
         });
-
         //Displays info when page is changed
         function authCheck(response) {
             if (response.authResponse) {
