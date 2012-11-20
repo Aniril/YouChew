@@ -36,8 +36,10 @@ namespace YouChew.Controllers
 
             venue.Id = (string)root["response"]["venue"]["id"];
             venue.name = (string)root["response"]["venue"]["name"];
+            venue.address = (string)root["response"]["venue"]["location"]["address"];
             venue.location = (string)root["response"]["venue"]["location"]["city"] + ", " + (string)root["response"]["venue"]["location"]["state"];
             venue.phone = (string)root["response"]["venue"]["contact"]["formattedPhone"];
+            venue.website = (string)root["response"]["venue"]["url"];
             try
             {
                 int count = (int)root["response"]["venue"]["photos"]["groups"][1]["count"];

@@ -15,6 +15,17 @@
 
 <br />
 
+<style>
+.marker-image {
+    width:25px;
+    height:25px;
+    margin-left:-12px;
+    margin-top:-12px;
+    pointer-events:all;
+    position:absolute;
+}
+</style>
+
 <div id='map'></div>
 
 
@@ -55,12 +66,18 @@
     var markerLayer = mapbox.markers.layer();
     m.addLayer(markerLayer);
 
-    var restaurantLayer = mapbox.markers.layer().features(features);
+    var restaurantLayer = mapbox.markers.layer().features(features).factory(function(f) {
+        var img = document.createElement('img');
+        img.className = 'marker-image';
+        img.setAttribute('src', f.properties.image);
+        return img;
+    });
+
     var interaction = mapbox.markers.interaction(restaurantLayer);
     m.addLayer(restaurantLayer);
 
     // Add Initial Marker
-    m.zoom(11).center({
+    m.zoom(12).center({
           lat: curLat,
           lon: curLng
     });
@@ -79,9 +96,8 @@
         var o = '<center><form method="post" action="./Restaurant">' +
             '<input type="hidden" name="venueId" value="' + feature.properties.id + '">' +
             '<input type="image" src="' + feature.properties.image + '" width="150px" height="150px"></form>' +
-            '<p><b>' + feature.properties.name + '</b><br/>' +
-            'Location: ' + feature.properties.location + '<br/>' +
-            'Phone: ' + feature.properties.phone + '</p>' +
+            '<p><b>' + feature.properties.name + '</b><br/>' + feature.properties.location + '<br/>' +
+            feature.properties.phone + '</p>' +
             '</center>';
 
         return o;

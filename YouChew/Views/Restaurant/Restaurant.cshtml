@@ -19,7 +19,7 @@
 <table>
     <tr>
         <td>
-           <div id="map" style="width: 304px; position: relative; height: 238px"></div>
+           <div id="map" style="width: 400px; position: relative; height: 250px"></div>
         </td>
         <td valign="top">
             @Model.cuisine
@@ -28,16 +28,33 @@
     <tr>
         <td>
             <br />
-            Location: @Model.location<br />
-            Phone: @Model.phone
+            @Model.address<br />
+            @Model.location<br />
+            @Model.phone<br />
+            <a href="@Model.website" target="_blank">@Model.website</a><br />
+            <br />
         </td>
     </tr>
 </table>
 </div>
 
-<div id="mainPic" ></div>
+<div style="float: right">
+    <table>
+        <tr>
+            <td style="height: 300px">
+                <div id="mainPic"></div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <div id="morPic" ></div>
+            </td>
+        </tr>
+    </table>
+</div>
 
-<div id="morPic" ></div>
+<br />
+<br />
 
 <fb:comments xid="@Model.Id" canpost="true" numposts="5" ></fb:comments>
 
@@ -45,16 +62,16 @@
     var picStr = "@Model.icon";
     var pictures = picStr.split(",");
 
-    document.getElementById("mainPic").innerHTML = "<img src=\"" + pictures[0] + "\" width=\"200px\" height=\"200px\" />";
+    document.getElementById("mainPic").innerHTML = "<img src=\"" + pictures[0] + "\" width=\"300px\" />";
     
     for(var i = 0; i < pictures.length; i++)
     {
-        document.getElementById("morPic").innerHTML += "<img src=\"" + pictures[i] + "\" width=\"100px\" height=\"100px\" onclick=\"changeImage(\'" + pictures[i] + "\')\" /><br/>";
+        document.getElementById("morPic").innerHTML += "<img src=\"" + pictures[i] + "\" width=\"50px\" height=\"50px\" onclick=\"changeImage(\'" + pictures[i] + "\')\" />";
     }
 
     function changeImage(url)
     {
-        document.getElementById("mainPic").innerHTML = "<img src=\"" + url + "\" width=\"200px\" height=\"200px\" />";
+        document.getElementById("mainPic").innerHTML = "<img src=\"" + url + "\" width=\"300px\" />";
     }
     
     // Create the Map
