@@ -44,7 +44,8 @@
                     "image": "@item.icon",
                     "name": "@item.name",
                     "location": "@item.location",
-                    "phone": "@item.phone"
+                    "phone": "@item.phone",
+                    "url": "./Restaurant?venueId=@item.Id"
                 }
             },
         </text>
@@ -93,7 +94,7 @@
 
     // Add Interaction
     interaction.formatter(function(feature) {
-        var o = '<center><form method="post" action="./Restaurant">' +
+        var o = '<center><form method="post" action="' + feature.properties.url + '">' +
             '<input type="hidden" name="venueId" value="' + feature.properties.id + '">' +
             '<input type="image" src="' + feature.properties.image + '" width="150px" height="150px"></form>' +
             '<p><b>' + feature.properties.name + '</b><br/>' + feature.properties.location + '<br/>' +

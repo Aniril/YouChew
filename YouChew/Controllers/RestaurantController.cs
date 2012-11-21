@@ -18,15 +18,13 @@ namespace YouChew.Controllers
 
         UnitOfWork uow = new UnitOfWork();
 
-        
-        public ActionResult Restaurant()
+
+        /*public ActionResult Restaurant(string venueId)
         {
             //IEnumerable<Restaurant> stuff =  uow.RestaurantRepository.Get();
-
-            return View();
+        
         }
-
-		[HttpPost]
+         */ 
 		public ActionResult Restaurant(string venueId)
 		{
             var request = new FourSquareRequest();
