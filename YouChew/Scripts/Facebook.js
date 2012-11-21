@@ -15,7 +15,7 @@
             if (response.authResponse) {
                 FB.api('/me', function (response) {
                     facebookInfo.innerHTML = 'Welcome, '
-                    + '<a href="' + response.link + '">' + response.name + '</a>.  ';
+                    + '<a href="'+ response.link + '">' + response.name + '</a>.  ';
                 });
             } else {
                 console.log('User cancelled login or did not fully authorize.');
@@ -29,7 +29,7 @@
         function authCheck(response) {
             if (response.authResponse) {
                 FB.api('/me', function (response) {
-                    facebookInfo.innerHTML = 'Welcome, ' 
+                    facebookInfo.innerHTML = 'Welcome, '
                     + '<a href="'+ response.link + '">' + response.name + '</a>.  ';
                 });
             } else {
@@ -50,6 +50,7 @@
         }
 
         FB.Event.subscribe('auth.statusChange', userInfo);
+
     };
 
     (function () {
