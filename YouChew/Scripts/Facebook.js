@@ -9,13 +9,13 @@
         });
 
         var facebookInfo = document.getElementById('user-info');
+
         //Facebook login event
         FB.Event.subscribe('auth.login', function (response) {
             if (response.authResponse) {
                 FB.api('/me', function (response) {
-                    facebookInfo.innerHTML = 'Welcome, ' + response.name
-                    + ' <img src="https://graph.facebook.com/'
-                    + response.id + '/picture">';
+                    facebookInfo.innerHTML = 'Welcome, '
+                    + '<a href="' + response.link + '">' + response.name + '</a>.  ';
                 });
             } else {
                 console.log('User cancelled login or did not fully authorize.');
@@ -29,9 +29,8 @@
         function authCheck(response) {
             if (response.authResponse) {
                 FB.api('/me', function (response) {
-                    facebookInfo.innerHTML = 'Welcome, ' + response.name
-                    + ' <img src="https://graph.facebook.com/'
-                    + response.id + '/picture">';
+                    facebookInfo.innerHTML = 'Welcome, ' 
+                    + '<a href="'+ response.link + '">' + response.name + '</a>.  ';
                 });
             } else {
                 console.log('Error, not logged in.');

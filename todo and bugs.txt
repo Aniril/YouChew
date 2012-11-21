@@ -2,13 +2,20 @@ To do:
 
 icon/logo
 reimplement old UI
-facebook info into static bar (with or without image)
 share on facebook when posting comments (with first picture from foursquare: if possible)
 more search options (search for restaurants)
 put restaurant page pictures on a separate scroll bar
 validation of successful fb login for post of comment (otherwise it doesn't refresh the list after post)
 reliant on bug 1: static url for each page based on foursquare id (using graph api, get parsed  comment info for more uses)
+on maps, make it so you can click on the marker rather than the image
+if we get to adding directions, we can reimplement google maps and use the directions they provide
+
 
 Bugs:
 
 Bug 1:  can't find http://localhost:1423/Restaurant/Restaurant/@Model.Id callback (it is null)
+
+
+Changes:
+
+Jason:  Added link to Facebook profile by clicking on your name when logged in.

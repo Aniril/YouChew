@@ -5,13 +5,8 @@
         InitialiseFacebook(@System.Configuration.ConfigurationManager.AppSettings["FacebookAppId"]);
     });
 </script>
-<div id="fb-root" style="display:none"></div>   
-<table>
-    <tr style="height: 50; vertical-align:bottom;">
-        <td>
-            <fb:login-button autologoutlink="true" perms="email,publish_stream"></fb:login-button>
-        </td><td>
-            <!--<div id="user-info"></div>-->
-        </td>
-    </tr>
-</table>
+<div id="fb-root" style="display:none"></div>
+<div style="vertical-align:bottom;">
+    <div id="user-info" style="float: left;"></div>
+    <fb:login-button autologoutlink="true" perms="email,publish_stream"></fb:login-button>
+</div>
