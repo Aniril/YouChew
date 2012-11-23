@@ -15,7 +15,7 @@
             if (response.authResponse) {
                 FB.api('/me', function (response) {
                     facebookInfo.innerHTML = 'Welcome, '
-                    + '<a href="'+ response.link + '">' + response.name + '</a>.  ';
+                    + '<a href="' + response.link + '">' + response.name + '</a>.  ';
                 });
             } else {
                 console.log('User cancelled login or did not fully authorize.');
@@ -30,7 +30,7 @@
             if (response.authResponse) {
                 FB.api('/me', function (response) {
                     facebookInfo.innerHTML = 'Welcome, '
-                    + '<a href="'+ response.link + '">' + response.name + '</a>.  ';
+                    + '<a href="' + response.link + '">' + response.name + '</a>.  ';
                 });
             } else {
                 console.log('Error, not logged in.');
@@ -43,9 +43,12 @@
         function userInfo(response) {
             var username = document.getElementById('username');
             var email = document.getElementById('email');
+            var picture = document.getElementById('picture');
             FB.api('/me', function (response) {
                 username.innerHTML = response.name;
                 email.innerHTML = response.email;
+                picture.innerHTML = '<img src="https://graph.facebook.com/' 
+                    + response.id + '/picture">';
             });
         }
 

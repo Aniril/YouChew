@@ -3,11 +3,12 @@ To do:
 icon/logo
 reimplement old UI
 more search options (search for restaurants by name, certain mile radius, etc)
+    when searching by city, is there a way you can pull in some suggestions assuming that the city they've searched for isn't valid.
+    on that same topic, perhaps those search buttons can be implemented in the Restaurant List page (after searching)
 on maps, make it so you can click on the marker rather than the image
 if we get to adding directions, we can reimplement google maps and use the directions they provide
 also, is there a ranking or rating system that can be imported from foursquare?
-
-
-Bugs:
-
-When you are at a restaurant page and you click on the YouChew in the upper left, it crashes and burns
+user page needs to pull comments made by logged in user. (may not work with localhost)
+we need to talk about uploading pictures.
+if possible, hide the fb:comments warnings. having a working domain will resolve this
+paperwork (SRS and feasability report)
