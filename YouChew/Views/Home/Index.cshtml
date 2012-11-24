@@ -19,7 +19,7 @@
             function (position) {
                 latitude = position.coords.latitude;
                 longitude = position.coords.longitude;
-                document.getElementById("PostMessage").innerHTML = latitude + " " + longitude;
+                document.getElementById("PostMessage").innerHTML = "Done.";
 
                 var form = document.createElement("form");
                 form.setAttribute("method", "post");
@@ -44,7 +44,7 @@
     }
 
     document.getElementById("locate").onclick = function (e) {
-        document.getElementById("PostMessage").innerHTML = "Finding Local Venues...";
+        document.getElementById("PostMessage").innerHTML = "Fetching Current Coordinates...";
         getPosition();
     }
 
