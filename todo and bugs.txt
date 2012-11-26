@@ -12,3 +12,5 @@ user page needs to pull comments made by logged in user. (may not work with loca
 we need to talk about uploading pictures.
 if possible, hide the fb:comments warnings. having a working domain will resolve this
 paperwork (SRS and feasability report)
+
+Durel's Thought: Maybe have the home page's search results get submitted to a partial view that appears on the home page.
