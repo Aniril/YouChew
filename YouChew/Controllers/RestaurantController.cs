@@ -63,7 +63,7 @@ namespace YouChew.Controllers
         }
 
         [HttpPost]
-        public ActionResult RestaurantList(string city, string name, string fastFood, string mexican, string pizza)
+        public ActionResult RestaurantList(string city, string name, string fastFood, string mexican, string pizza, string american, string diner, string bakery)
         {
             List<Restaurant> subsearch = new List<Restaurant>();
             
@@ -127,6 +127,57 @@ namespace YouChew.Controllers
                             });
                         }
                     }
+                    else if ((string)root["response"]["groups"][0]["items"][i]["venue"]["categories"][0]["shortName"] == "American")
+                    {
+                        if (american == "on")
+                        {
+                            subsearch.Add(new Restaurant
+                            {
+                                Id = (string)root["response"]["groups"][0]["items"][i]["venue"]["id"],
+                                name = (string)root["response"]["groups"][0]["items"][i]["venue"]["name"],
+                                latitude = (float)root["response"]["groups"][0]["items"][i]["venue"]["location"]["lat"],
+                                longitude = (float)root["response"]["groups"][0]["items"][i]["venue"]["location"]["lng"],
+                                location = (string)root["response"]["groups"][0]["items"][i]["venue"]["location"]["city"] + ", " + (string)root["response"]["groups"][0]["items"][i]["venue"]["location"]["state"],
+                                phone = (string)root["response"]["groups"][0]["items"][i]["venue"]["contact"]["formattedPhone"],
+                                icon = (string)root["response"]["groups"][0]["items"][i]["venue"]["categories"][0]["icon"],
+                                cuisine = (string)root["response"]["groups"][0]["items"][i]["venue"]["categories"][0]["shortName"]
+                            });
+                        }
+                    }
+                    else if ((string)root["response"]["groups"][0]["items"][i]["venue"]["categories"][0]["shortName"] == "Diner")
+                    {
+                        if (diner == "on")
+                        {
+                            subsearch.Add(new Restaurant
+                            {
+                                Id = (string)root["response"]["groups"][0]["items"][i]["venue"]["id"],
+                                name = (string)root["response"]["groups"][0]["items"][i]["venue"]["name"],
+                                latitude = (float)root["response"]["groups"][0]["items"][i]["venue"]["location"]["lat"],
+                                longitude = (float)root["response"]["groups"][0]["items"][i]["venue"]["location"]["lng"],
+                                location = (string)root["response"]["groups"][0]["items"][i]["venue"]["location"]["city"] + ", " + (string)root["response"]["groups"][0]["items"][i]["venue"]["location"]["state"],
+                                phone = (string)root["response"]["groups"][0]["items"][i]["venue"]["contact"]["formattedPhone"],
+                                icon = (string)root["response"]["groups"][0]["items"][i]["venue"]["categories"][0]["icon"],
+                                cuisine = (string)root["response"]["groups"][0]["items"][i]["venue"]["categories"][0]["shortName"]
+                            });
+                        }
+                    }
+                    else if ((string)root["response"]["groups"][0]["items"][i]["venue"]["categories"][0]["shortName"] == "Bakery")
+                    {
+                        if (bakery == "on")
+                        {
+                            subsearch.Add(new Restaurant
+                            {
+                                Id = (string)root["response"]["groups"][0]["items"][i]["venue"]["id"],
+                                name = (string)root["response"]["groups"][0]["items"][i]["venue"]["name"],
+                                latitude = (float)root["response"]["groups"][0]["items"][i]["venue"]["location"]["lat"],
+                                longitude = (float)root["response"]["groups"][0]["items"][i]["venue"]["location"]["lng"],
+                                location = (string)root["response"]["groups"][0]["items"][i]["venue"]["location"]["city"] + ", " + (string)root["response"]["groups"][0]["items"][i]["venue"]["location"]["state"],
+                                phone = (string)root["response"]["groups"][0]["items"][i]["venue"]["contact"]["formattedPhone"],
+                                icon = (string)root["response"]["groups"][0]["items"][i]["venue"]["categories"][0]["icon"],
+                                cuisine = (string)root["response"]["groups"][0]["items"][i]["venue"]["categories"][0]["shortName"]
+                            });
+                        }
+                    }
                     else
                     {
                         subsearch.Add(new Restaurant
@@ -141,29 +192,6 @@ namespace YouChew.Controllers
                             cuisine = (string)root["response"]["groups"][0]["items"][i]["venue"]["categories"][0]["shortName"]
                         });
                     }
-                }
-            }
-
-            if (city == null)
-            {
-                var request = new FourSquareRequest();
-                var root = JObject.Parse(request.VenuesByName(name));
-                IEnumerable<JToken> search = new List<JToken>();
-                search = root["response"]["groups"][0]["items"];
-
-                for (int i = 0; i < search.Count(); i++)
-                {
-                    subsearch.Add(new Restaurant
-                    {
-                        Id = (string)root["response"]["groups"][0]["items"][i]["venue"]["id"],
-                        name = (string)root["response"]["groups"][0]["items"][i]["venue"]["name"],
-                        latitude = (float)root["response"]["groups"][0]["items"][i]["venue"]["location"]["lat"],
-                        longitude = (float)root["response"]["groups"][0]["items"][i]["venue"]["location"]["lng"],
-                        location = (string)root["response"]["groups"][0]["items"][i]["venue"]["location"]["city"] + ", " + (string)root["response"]["groups"][0]["items"][i]["venue"]["location"]["state"],
-                        phone = (string)root["response"]["groups"][0]["items"][i]["venue"]["contact"]["formattedPhone"],
-                        icon = (string)root["response"]["groups"][0]["items"][i]["venue"]["categories"][0]["icon"],
-                        cuisine = (string)root["response"]["groups"][0]["items"][i]["venue"]["categories"][0]["shortName"]
-                    });
                 }
             }
 

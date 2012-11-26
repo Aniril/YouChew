@@ -54,7 +54,19 @@
     }
 
     document.getElementById("findCity").onclick = function (e) {
-        document.getElementById("PostMessage").innerHTML = '<form class="form-search" method="post" action="../Restaurant/RestaurantList" ><div class="input-append"><input type="text" name="city" class="search-query" placeholder="City Name"/><input type="submit" value="search" class="btn btn-info"/></div><br/><input type="checkbox" checked="checked" name="fastFood" /> Fast Food<input type="checkbox" checked="checked" name="Mexican" /> Mexican<input type="checkbox" checked="checked" name="pizza" /> Pizza</form>';
+        var string;
+        string = '<form class="form-search" method="post" action="../Restaurant/RestaurantList" >';
+        string += '<div class="input-append">';
+        string += '<input type="text" name="city" class="search-query" placeholder="City Name"/>';
+        string += '<input type="submit" value="search" class="btn btn-info"/></div><br/>';
+        string += '<input type="checkbox" checked="checked" name="fastFood" /> Fast Food';
+        string += '<input type="checkbox" checked="checked" name="mexican" /> Mexican';
+        string += '<input type="checkbox" checked="checked" name="pizza" /> Pizza';
+        string += '<input type="checkbox" checked="checked" name="american" /> American';
+        string += '<input type="checkbox" checked="checked" name="diner" /> Diner';
+        string += '<input type="checkbox" checked="checked" name="bakery" /> Bakery';
+        string += '</form>';
+        document.getElementById("PostMessage").innerHTML = string;
     }
 
     document.getElementById("findName").onclick = function (e) {
