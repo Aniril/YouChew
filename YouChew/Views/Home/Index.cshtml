@@ -54,7 +54,7 @@
     }
 
     document.getElementById("findCity").onclick = function (e) {
-        document.getElementById("PostMessage").innerHTML = '<form class="form-search" method="post" action="../Restaurant/RestaurantList" ><div class="input-append"><input type="text" name="city" class="search-query" placeholder="City Name"/><input type="submit" value="search" class="btn btn-info"/></div></form>';
+        document.getElementById("PostMessage").innerHTML = '<form class="form-search" method="post" action="../Restaurant/RestaurantList" ><div class="input-append"><input type="text" name="city" class="search-query" placeholder="City Name"/><input type="submit" value="search" class="btn btn-info"/></div><br/><input type="checkbox" checked="checked" name="fastFood" /> Fast Food<input type="checkbox" checked="checked" name="Mexican" /> Mexican<input type="checkbox" checked="checked" name="pizza" /> Pizza</form>';
     }
 
     document.getElementById("findName").onclick = function (e) {

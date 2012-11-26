@@ -56,5 +56,12 @@ namespace YouChew.Services
             webClient.Headers[HttpRequestHeader.ContentType] = "application/x-www-form-urlencoded";
             return webClient.DownloadString(getRequest);
         }
+
+        public string VenuesByName(string name)
+        {
+            string getRequest = reqData.exploreUrl + "?near=hammond,la" + "&radius=40000" + "&query=" + name + "&section=food" + reqData.authUrlClient + reqData.authUrlClientSecret;
+            webClient.Headers[HttpRequestHeader.ContentType] = "application/x-www-form-urlencoded";
+            return webClient.DownloadString(getRequest);
+        }
 	}
 }

@@ -2,12 +2,13 @@
 
 @{
     ViewBag.Title = "Restaurant List";
+    /*@cc_on @*/
 }
 
 <h2>Restaurant List</h2>
 
+<div id="list">
 <table>
-
 @foreach (var item in Model)
 {
     <tr>
@@ -16,14 +17,54 @@
                 <input type="hidden" name="venueID" value="@item.Id" />
                 <h2>@item.name</h2>
                 <br />
-                <img src="@item.icon" width="50px" height="50px" />    <input type="submit" value="See More" class="btn btn-info"/>
+                <img src="@item.icon" width="50px" height="50px" />    <input type="submit" value="See More" />
             </form>
         </td>
         <td align="right">
-            Location: @item.location <br />
-            Phone: @item.phone
+            @item.location <br />
+            @item.phone
         </td>
     </tr>
 }
 
 </table>
+</div>
+
+@*<script type="text/javascript">
+    document.write("yos");
+    function changeList() {
+        document.getElementById("list") = "<table>";
+        @foreach (var item in Model)
+        {
+            <text>
+                if(@item.cuisine == "Fast Food")
+                {
+                    if(document.getElementByName("fastFood").value == "checked")
+                    {
+                        document.getElementById("list") += "<tr><td>";
+                        document.getElementById("list") += "I have been changes";
+                        document.getElementById("list") += "<form method=\"post\" action=\"Restaurant?venueId=@item.Id\">";
+                        document.getElementById("list") += "<input type=\"hidden\" name=\"venueID\" value=\"@item.Id\" />";
+                        document.getElementById("list") += "<h2>@item.name</h2>";
+                        document.getElementById("list") += "<br />";
+                        document.getElementById("list") += "<img src=\"@item.icon\" width=\"50px\" height=\"50px\" />    <input type=\"submit\" value=\"See More\" />";
+                        document.getElementById("list") += "</form></td></tr>";
+                    }
+                }
+                else
+                {
+                    document.getElementById("list") += "<tr><td>";
+                    document.getElementById("list") += "I have been changes";
+                    document.getElementById("list") += "<form method=\"post\" action=\"Restaurant?venueId=@item.Id\">";
+                    document.getElementById("list") += "<input type=\"hidden\" name=\"venueID\" value=\"@item.Id\" />";
+                    document.getElementById("list") += "<h2>@item.name</h2>";
+                    document.getElementById("list") += "<br />";
+                    document.getElementById("list") += "<img src=\"@item.icon\" width=\"50px\" height=\"50px\" />    <input type=\"submit\" value=\"See More\" />";
+                    document.getElementById("list") += "</form></td></tr>";
+                }
+            </text>
+        }
+        document.getElementById("list") += "</table>";
+    }
+    changeList();
+</script>*@
