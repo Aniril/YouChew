@@ -2,13 +2,18 @@
     ViewBag.Title = "Home Page";
 }
 
-<center><div class="btn-group"><a href="#" id="locate" class="btn btn-large btn-info">Find Restaurants Near Me</a>
-<a href="#" id="findCity" class="btn btn-large btn-info">Find Restaurants by City</a></div></center>
+<center>
+    <div class="btn-group">
+        <a href="#" id="locate" class="btn btn-info btn-large">Restaurants Near Me</a>
+        <a href="#" id="findCity" class="btn btn-large btn-info">Search by City</a>
+        <a href="#" id="findName" class="btn btn-large btn-info">Search by Name</a>
+    </div>
 
-<br />
-<br />
+    <br />
+    <br />
 
-<center><div id="PostMessage"></div></center>
+    <div id="PostMessage"></div>
+</center>
 
 <script type="text/javascript">
     var latitude;
@@ -49,6 +54,10 @@
     }
 
     document.getElementById("findCity").onclick = function (e) {
-        document.getElementById("PostMessage").innerHTML = '<form method="post" action="../Restaurant/RestaurantList"><input type="text" name="city" /><input type="submit" value="search" /></form>';
+        document.getElementById("PostMessage").innerHTML = '<form class="form-search" method="post" action="../Restaurant/RestaurantList" ><div class="input-append"><input type="text" name="city" class="search-query" placeholder="City Name"/><input type="submit" value="search" class="btn btn-info"/></div></form>';
+    }
+
+    document.getElementById("findName").onclick = function (e) {
+        document.getElementById("PostMessage").innerHTML = '<form class="form-search" method="post" ><div class="input-append"><input type="text" name="restaurant" class="search-query" placeholder="Restaurant Name"/><input type="submit" value="search" class="btn btn-info"/></div></form>';
     }
 </script>
