@@ -35,6 +35,7 @@
                     facebookInfo.innerHTML = 'Welcome, '
                     + '<a href="' + response.link + '">' + response.name + '</a>.  ';
                 });
+                infoBtn.style.display = 'block';
             } else {
                 console.log('Error, not logged in.');
             }
