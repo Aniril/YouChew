@@ -225,7 +225,8 @@ namespace YouChew.Controllers
                     longitude = (float)root["response"]["groups"][0]["items"][i]["venue"]["location"]["lng"],
                     location = (string)root["response"]["groups"][0]["items"][i]["venue"]["location"]["city"] + ", " + (string)root["response"]["groups"][0]["items"][i]["venue"]["location"]["state"],
                     phone = (string)root["response"]["groups"][0]["items"][i]["venue"]["contact"]["formattedPhone"],
-                    icon = (string)root["response"]["groups"][0]["items"][i]["venue"]["categories"][0]["icon"]
+                    icon = (string)root["response"]["groups"][0]["items"][i]["venue"]["categories"][0]["icon"],
+                    cuisine = (string)root["response"]["groups"][0]["items"][i]["venue"]["categories"][0]["shortName"]
                 });
             }
             return View(subsearch);

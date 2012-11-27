@@ -28,6 +28,13 @@
 
 <div id='map'></div>
 
+<center>
+<input type="checkbox" id="fastFoodChecked" checked="checked" onchange="changeMarkers()" /> Fast Food
+<input type="checkbox" id="pizzaChecked" checked="checked" onchange="changeMarkers()" /> Pizza
+<input type="checkbox" id="mexicanChecked" checked="checked" onchange="changeMarkers()" /> Mexican
+<input type="checkbox" id="dinerChecked" checked="checked" onchange="changeMarkers()" /> Diner
+</center>
+
 
 <script type="text/javascript">
     var curLat = @ViewBag.Lat;
@@ -42,17 +49,17 @@
                 "properties": {
                     "id": "@item.Id",
                     "image": "@item.icon",
+                    "tempImage": "@item.icon",
                     "name": "@item.name",
                     "location": "@item.location",
                     "phone": "@item.phone",
+                    "cuisine": "@item.cuisine",
                     "url": "./Restaurant?venueId=@item.Id"
                 }
             },
         </text>
     }
     ];
-
-    
     
     // Create the Map
     var m = mapbox.map('map').zoom(2).center({ lat: 0, lon: 0 });
@@ -103,6 +110,62 @@
 
         return o;
     });
+
+    function changeMarkers()
+    {
+        for(var i = 0; i < features.length; i++)
+        {
+            if(features[i].properties.cuisine == "Fast Food")
+            {
+                if(!document.getElementById("fastFoodChecked").checked)
+                {
+                    features[i].properties.image = null;
+                }
+                else
+                {
+                    features[i].properties.image = features[i].properties.tempImage;
+                }
+            }
+            else if(features[i].properties.cuisine == "Pizza")
+            {
+                if(!document.getElementById("pizzaChecked").checked)
+                {
+                    features[i].properties.image = null;
+                }
+                else
+                {
+                    features[i].properties.image = features[i].properties.tempImage;
+                }
+            }
+            else if(features[i].properties.cuisine == "Mexican")
+            {
+                if(!document.getElementById("mexicanChecked").checked)
+                {
+                    features[i].properties.image = null;
+                }
+                else
+                {
+                    features[i].properties.image = features[i].properties.tempImage;
+                }
+            }
+            else if(features[i].properties.cuisine == "Diner")
+            {
+                if(!document.getElementById("dinerChecked").checked)
+                {
+                    features[i].properties.image = null;
+                }
+                else
+                {
+                    features[i].properties.image = features[i].properties.tempImage;
+                }
+            }
+            else
+            {
+                features[i].properties.image = features[i].properties.tempImage;
+            }
+        }
+        restaurantLayer.features(features);
+    }
  
     // Geolocator
     var geolocate = document.getElementById('geolocate');
