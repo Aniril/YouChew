@@ -42,9 +42,9 @@
         </div>
       </div>
     </div>
-    <div class="hero-unit container">
+    <div class="container">
         <header style="margin-bottom: 20px; text-align: center;"><h1>YouChew</h1></header>
-        @RenderBody()
+        <div class="hero-unit">@RenderBody()</div>
     </div>
     @RenderSection("pageScript", false)
     <script src="http://code.jquery.com/jquery-latest.js"></script>
