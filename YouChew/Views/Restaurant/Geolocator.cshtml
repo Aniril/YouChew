@@ -26,15 +26,23 @@
 }
 </style>
 
-<div id='map'></div>
+<div class="my-box"><div id='map'></div>
 
 <center>
-<input type="checkbox" id="fastFoodChecked" checked="checked" onchange="changeMarkers()" /> Fast Food
-<input type="checkbox" id="pizzaChecked" checked="checked" onchange="changeMarkers()" /> Pizza
-<input type="checkbox" id="mexicanChecked" checked="checked" onchange="changeMarkers()" /> Mexican
-<input type="checkbox" id="dinerChecked" checked="checked" onchange="changeMarkers()" /> Diner
+<table>
+    <tr>
+        <td>
+            <input type="checkbox" id="fastFoodChecked" checked="checked" onchange="changeMarkers()" /> Fast Food<br />
+            <input type="checkbox" id="pizzaChecked" checked="checked" onchange="changeMarkers()" /> Pizza<br />
+        </td>
+        <td>
+            <input type="checkbox" id="mexicanChecked" checked="checked" onchange="changeMarkers()" /> Mexican<br />
+            <input type="checkbox" id="dinerChecked" checked="checked" onchange="changeMarkers()" /> Diner<br />
+        </td>
+    </tr>
+</table>
 </center>
-
+</div>
 
 <script type="text/javascript">
     var curLat = @ViewBag.Lat;

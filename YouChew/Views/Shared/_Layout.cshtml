@@ -10,7 +10,13 @@
         padding-top: 60px; /* 60px to make the container go all the way to the bottom of the topbar */
       }
       #map { width:100%; height:400px; }
-
+      .my-box
+        {
+            background: #bbcfee;
+            padding: 10px;
+            border-radius: 5px;
+            margin-bottom: 1em;
+        }
     </style>
     <script src='http://api.tiles.mapbox.com/mapbox.js/v0.6.6/mapbox.js'></script>
     <link href='http://api.tiles.mapbox.com/mapbox.js/v0.6.6/mapbox.css' rel='stylesheet' />
@@ -36,8 +42,8 @@
                 <!--<li>@Html.ActionLink("Restaurants","Index","Restaurant_Admin")</li>-->
 			    <!--<li>@Html.ActionLink("MapsTest", "MapsTest", "ViewTests")</li>-->
 			    <!--<li>@Html.ActionLink("Test Area","TestArea","Home")</li>-->
-                <li>@Html.ActionLink("User Info", "Info", "User")</li
-            </ul><div class="pull-right" style="padding: 10px; margin-left: 400px;">@Html.Partial("_FacebookPartial")</div>
+                <li id="infoBtn">@Html.ActionLink("User Info", "Info", "User")</li>
+            </ul><div class="pull-right" style="padding-top: 10px;">@Html.Partial("_FacebookPartial")</div>
           </div>
         </div>
       </div>
