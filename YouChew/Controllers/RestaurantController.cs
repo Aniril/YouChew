@@ -204,13 +204,25 @@ namespace YouChew.Controllers
         }
 
         [HttpPost]
-        public ActionResult Geolocator(string latitude, string longitude)
+        public ActionResult Geolocator(string city, string latitude, string longitude)
         {
+            var request = new FourSquareRequest();
+            var root = new JObject();
+
+            if (latitude == null && longitude == null)
+            {
+                root = JObject.Parse(request.VenuesByCity(city));
+                latitude = Convert.ToString(root["response"]["geocode"]["center"]["lat"]);
+                longitude = Convert.ToString(root["response"]["geocode"]["center"]["lng"]);
+            }
+            else
+            {
+                root = JObject.Parse(request.VenuesOrByName(latitude, longitude));
+            }
+
             ViewBag.Lat = latitude;
             ViewBag.Lng = longitude;
 
-			var request = new FourSquareRequest();
-            var root = JObject.Parse(request.VenuesOrByName(latitude,longitude));
             IEnumerable<JToken> search = new List<JToken>();
             search = root["response"]["groups"][0]["items"];
             List<Restaurant> subsearch = new List<Restaurant>();
