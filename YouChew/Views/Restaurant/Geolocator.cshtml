@@ -31,22 +31,51 @@
 <center>
 <table>
     <tr>
-        <td>
+        <td style="padding: 10px">
             <input type="checkbox" id="fastFoodChecked" checked="checked" onchange="changeMarkers()" /> Fast Food<br />
             <input type="checkbox" id="pizzaChecked" checked="checked" onchange="changeMarkers()" /> Pizza<br />
+            <input type="checkbox" id="asianChecked" checked="checked" onchange="changeMarkers()" /> Asian<br />
         </td>
-        <td>
+        <td style="padding: 10px">
             <input type="checkbox" id="mexicanChecked" checked="checked" onchange="changeMarkers()" /> Mexican<br />
             <input type="checkbox" id="dinerChecked" checked="checked" onchange="changeMarkers()" /> Diner<br />
+            <input type="checkbox" id="icecreamChecked" checked="checked" onchange="changeMarkers()" /> Ice Cream<br />
+        </td>
+        <td style="padding: 10px">
+            <input type="checkbox" id="cajunChecked" checked="checked" onchange="changeMarkers()" /> Cajun<br />
+            <input type="checkbox" id="steakChecked" checked="checked" onchange="changeMarkers()" /> Steakhouse<br />
+            <input type="checkbox" id="seafoodChecked" checked="checked" onchange="changeMarkers()" /> Seafood<br />
+        </td>
+        <td style="padding: 10px">
+            <input type="checkbox" id="italianChecked" checked="checked" onchange="changeMarkers()" /> Italian<br />
+            <input type="checkbox" id="grillChecked" checked="checked" onchange="changeMarkers()" /> Grill<br />
+            <input type="checkbox" id="bakeryChecked" checked="checked" onchange="changeMarkers()" /> Bakery<br />
+        </td>
+        <td style="padding: 10px">
+            <input type="checkbox" id="sandwichChecked" checked="checked" onchange="changeMarkers()" /> Sandwiches<br />
+            <input type="checkbox" id="americanChecked" checked="checked" onchange="changeMarkers()" /> American<br />
+            <input type="checkbox" id="otherChecked" checked="checked" onchange="changeMarkers()" /> Other<br />
         </td>
     </tr>
 </table>
+<br />
+<button onclick="checkAll()" class="btn btn-info">Check All</button>
+<button onclick="uncheckAll()" class="btn btn-info">Uncheck All</button>
+<br />
+<br />
+<button onclick="spinner()" class="btn btn-info">I Can't Decide!</button>
 </center>
 </div>
+
+<div id="test"></div>
 
 <script type="text/javascript">
     var curLat = @ViewBag.Lat;
     var curLng = @ViewBag.Lng;
+    var current;
+    var count;
+    var previous;
+    var curVenueId;
 
     var features = [
     @foreach(var item in Model)
@@ -58,11 +87,13 @@
                     "id": "@item.Id",
                     "image": "@item.icon",
                     "tempImage": "@item.icon",
+                    "temp": "@item.latitude",
                     "name": "@item.name",
                     "location": "@item.location",
                     "phone": "@item.phone",
                     "cuisine": "@item.cuisine",
-                    "url": "./Restaurant?venueId=@item.Id"
+                    "url": "./Restaurant?venueId=@item.Id",
+                    "active": "true"
                 }
             },
         </text>
@@ -119,6 +150,7 @@
         return o;
     });
 
+    // Function for Updating the Markers
     function changeMarkers()
     {
         for(var i = 0; i < features.length; i++)
@@ -127,52 +159,285 @@
             {
                 if(!document.getElementById("fastFoodChecked").checked)
                 {
-                    features[i].properties.image = null;
+                    features[i].geometry.coordinates[1] = null;
+                    features[i].properties.active = "false";
                 }
                 else
                 {
-                    features[i].properties.image = features[i].properties.tempImage;
+                    features[i].geometry.coordinates[1] = features[i].properties.temp;
+                    features[i].properties.active = "true";
                 }
             }
             else if(features[i].properties.cuisine == "Pizza")
             {
                 if(!document.getElementById("pizzaChecked").checked)
                 {
-                    features[i].properties.image = null;
+                    features[i].geometry.coordinates[1] = null;
+                    features[i].properties.active = "false";
                 }
                 else
                 {
-                    features[i].properties.image = features[i].properties.tempImage;
+                    features[i].geometry.coordinates[1] = features[i].properties.temp;
+                    features[i].properties.active = "true";
                 }
             }
-            else if(features[i].properties.cuisine == "Mexican")
+            else if(features[i].properties.cuisine == "Mexican" || features[i].properties.cuisine == "Tacos")
             {
                 if(!document.getElementById("mexicanChecked").checked)
                 {
-                    features[i].properties.image = null;
+                    features[i].geometry.coordinates[1] = null;
+                    features[i].properties.active = "false";
                 }
                 else
                 {
-                    features[i].properties.image = features[i].properties.tempImage;
+                    features[i].geometry.coordinates[1] = features[i].properties.temp;
+                    features[i].properties.active = "true";
                 }
             }
             else if(features[i].properties.cuisine == "Diner")
             {
                 if(!document.getElementById("dinerChecked").checked)
                 {
-                    features[i].properties.image = null;
+                    features[i].geometry.coordinates[1] = null;
+                    features[i].properties.active = "false";
                 }
                 else
                 {
-                    features[i].properties.image = features[i].properties.tempImage;
+                    features[i].geometry.coordinates[1] = features[i].properties.temp;
+                    features[i].properties.active = "true";
+                }
+            }
+            else if(features[i].properties.cuisine == "Chinese" || features[i].properties.cuisine == "Sushi" || features[i].properties.cuisine == "Asian")
+            {
+                if(!document.getElementById("asianChecked").checked)
+                {
+                    features[i].geometry.coordinates[1] = null;
+                    features[i].properties.active = "false";
+                }
+                else
+                {
+                    features[i].geometry.coordinates[1] = features[i].properties.temp;
+                    features[i].properties.active = "true";
+                }
+            }
+            else if(features[i].properties.cuisine == "Cajun / Creole")
+            {
+                if(!document.getElementById("cajunChecked").checked)
+                {
+                    features[i].geometry.coordinates[1] = null;
+                    features[i].properties.active = "false";
+                }
+                else
+                {
+                    features[i].geometry.coordinates[1] = features[i].properties.temp;
+                    features[i].properties.active = "true";
+                }
+            }
+            else if(features[i].properties.cuisine == "Ice Cream")
+            {
+                if(!document.getElementById("icecreamChecked").checked)
+                {
+                    features[i].geometry.coordinates[1] = null;
+                    features[i].properties.active = "false";
+                }
+                else
+                {
+                    features[i].geometry.coordinates[1] = features[i].properties.temp;
+                    features[i].properties.active = "true";
+                }
+            }
+            else if(features[i].properties.cuisine == "Steakhouse")
+            {
+                if(!document.getElementById("steakChecked").checked)
+                {
+                    features[i].geometry.coordinates[1] = null;
+                    features[i].properties.active = "false";
+                }
+                else
+                {
+                    features[i].geometry.coordinates[1] = features[i].properties.temp;
+                    features[i].properties.active = "true";
+                }
+            }
+            else if(features[i].properties.cuisine == "Seafood")
+            {
+                if(!document.getElementById("seafoodChecked").checked)
+                {
+                    features[i].geometry.coordinates[1] = null;
+                    features[i].properties.active = "false";
+                }
+                else
+                {
+                    features[i].geometry.coordinates[1] = features[i].properties.temp;
+                    features[i].properties.active = "true";
+                }
+            }
+            else if(features[i].properties.cuisine == "Italian")
+            {
+                if(!document.getElementById("italianChecked").checked)
+                {
+                    features[i].geometry.coordinates[1] = null;
+                    features[i].properties.active = "false";
+                }
+                else
+                {
+                    features[i].geometry.coordinates[1] = features[i].properties.temp;
+                    features[i].properties.active = "true";
+                }
+            }
+            else if(features[i].properties.cuisine == "BBQ" || features[i].properties.cuisine == "Wings")
+            {
+                if(!document.getElementById("grillChecked").checked)
+                {
+                    features[i].geometry.coordinates[1] = null;
+                    features[i].properties.active = "false";
+                }
+                else
+                {
+                    features[i].geometry.coordinates[1] = features[i].properties.temp;
+                    features[i].properties.active = "true";
+                }
+            }
+            else if(features[i].properties.cuisine == "Bakery")
+            {
+                if(!document.getElementById("bakeryChecked").checked)
+                {
+                    features[i].geometry.coordinates[1] = null;
+                    features[i].properties.active = "false";
+                }
+                else
+                {
+                    features[i].geometry.coordinates[1] = features[i].properties.temp;
+                    features[i].properties.active = "true";
+                }
+            }
+            else if(features[i].properties.cuisine == "Sandwiches")
+            {
+                if(!document.getElementById("sandwichChecked").checked)
+                {
+                    features[i].geometry.coordinates[1] = null;
+                    features[i].properties.active = "false";
+                }
+                else
+                {
+                    features[i].geometry.coordinates[1] = features[i].properties.temp;
+                    features[i].properties.active = "true";
+                }
+            }
+            else if(features[i].properties.cuisine == "American")
+            {
+                if(!document.getElementById("americanChecked").checked)
+                {
+                    features[i].geometry.coordinates[1] = null;
+                    features[i].properties.active = "false";
+                }
+                else
+                {
+                    features[i].geometry.coordinates[1] = features[i].properties.temp;
+                    features[i].properties.active = "true";
                 }
             }
             else
             {
-                features[i].properties.image = features[i].properties.tempImage;
+                if(!document.getElementById("otherChecked").checked)
+                {
+                    features[i].geometry.coordinates[1] = null;
+                    features[i].properties.active = "false";
+                }
+                else
+                {
+                    features[i].geometry.coordinates[1] = features[i].properties.temp;
+                    features[i].properties.active = "true";
+                }
             }
         }
         restaurantLayer.features(features);
+    }
+
+    function checkAll()
+    {
+        document.getElementById("fastFoodChecked").checked = true;
+        document.getElementById("pizzaChecked").checked = true;
+        document.getElementById("asianChecked").checked = true;
+        document.getElementById("mexicanChecked").checked = true;
+        document.getElementById("dinerChecked").checked = true;
+        document.getElementById("icecreamChecked").checked = true;
+        document.getElementById("cajunChecked").checked = true;
+        document.getElementById("steakChecked").checked = true;
+        document.getElementById("seafoodChecked").checked = true;
+        document.getElementById("italianChecked").checked = true;
+        document.getElementById("grillChecked").checked = true;
+        document.getElementById("bakeryChecked").checked = true;
+        document.getElementById("sandwichChecked").checked = true;
+        document.getElementById("americanChecked").checked = true;
+        document.getElementById("otherChecked").checked = true;
+        changeMarkers();
+    }
+
+    function uncheckAll()
+    {
+        document.getElementById("fastFoodChecked").checked = false;
+        document.getElementById("pizzaChecked").checked = false;
+        document.getElementById("asianChecked").checked = false;
+        document.getElementById("mexicanChecked").checked = false;
+        document.getElementById("dinerChecked").checked = false;
+        document.getElementById("icecreamChecked").checked = false;
+        document.getElementById("cajunChecked").checked = false;
+        document.getElementById("steakChecked").checked = false;
+        document.getElementById("seafoodChecked").checked = false;
+        document.getElementById("italianChecked").checked = false;
+        document.getElementById("grillChecked").checked = false;
+        document.getElementById("bakeryChecked").checked = false;
+        document.getElementById("sandwichChecked").checked = false;
+        document.getElementById("americanChecked").checked = false;
+        document.getElementById("otherChecked").checked = false;
+        changeMarkers();
+    }
+
+    function spinner()
+    {
+        for(var i = 0; i < features.length; i++)
+        {
+            features[i].properties.image = null;
+        }
+        restaurantLayer.features(features);
+
+        count = (Math.floor(Math.random()*15))+15;
+        spinnerNext();
+    }
+
+    function spinnerNext()
+    {
+        current = Math.floor(Math.random()*features.length);
+        if(features[current].properties.active == "true")
+        {
+            features[current].properties.image = features[current].properties.tempImage;
+            curVenueId = features[current].properties.id;
+            if(previous != null)
+            {
+                features[previous].properties.image = null;
+            }
+            restaurantLayer.features(features);
+            previous = current;
+            count--;
+            if(count > 0)
+            {
+                setTimeout(spinnerNext, 200);
+            }
+            else
+            {
+                setTimeout(goToUrl, 1000);
+            }
+        }
+        else
+        {
+            spinnerNext();
+        }
+    }
+
+    function goToUrl()
+    {
+        window.location = "./Restaurant?venueId=" + curVenueId;
     }
  
     // Geolocator
