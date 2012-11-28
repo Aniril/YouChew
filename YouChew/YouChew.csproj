@@ -224,6 +224,7 @@
     <Content Include="Images\btn-index-findrestaurant.png" />
     <Content Include="Images\glyphicons-halflings-white.png" />
     <Content Include="Images\glyphicons-halflings.png" />
+    <Content Include="Images\youChewLogo.png" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\jquery.ba-bbq.js" />
     <Content Include="Content\themes\base\jquery.ui.accordion.css" />
