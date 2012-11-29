@@ -5,4 +5,7 @@ also, is there a ranking or rating system that can be imported from foursquare?
 user page needs to pull comments made by logged in user.
 we need to talk about uploading pictures.
 
+when you search for a city that is not found, it crashes.
+
+
 Durel's Thought: Maybe have the home page's search results get submitted to a partial view that appears on the home page.
