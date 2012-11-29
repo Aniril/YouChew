@@ -9,7 +9,7 @@
         });
 
         var facebookInfo = document.getElementById('user-info');
-        var infoBtn = document.getElementById('infoBtn');
+//        var infoBtn = document.getElementById('infoBtn');
 
         //Facebook login event
         FB.Event.subscribe('auth.login', function (response) {
@@ -18,7 +18,7 @@
                     facebookInfo.innerHTML = 'Welcome, '
                     + '<a href="' + response.link + '">' + response.name + '</a>.  ';
                 });
-                infoBtn.style.display = 'block';
+//                infoBtn.style.display = 'block';
             } else {
                 console.log('User cancelled login or did not fully authorize.');
             }
@@ -26,7 +26,7 @@
         //Facebook logout event
         FB.Event.subscribe('auth.logout', function (response) {
             facebookInfo.innerHTML = "";
-            infoBtn.style.display = 'none';
+//            infoBtn.style.display = 'none';
         });
         //Displays info when page is changed
         function authCheck(response) {
@@ -35,7 +35,7 @@
                     facebookInfo.innerHTML = 'Welcome, '
                     + '<a href="' + response.link + '">' + response.name + '</a>.  ';
                 });
-                infoBtn.style.display = 'block';
+//                infoBtn.style.display = 'block';
             } else {
                 console.log('Error, not logged in.');
             }

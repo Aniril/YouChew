@@ -62,13 +62,20 @@
     var picStr = "@Model.icon";
     var pictures = picStr.split(",");
 
-    document.getElementById("mainPic").innerHTML = "<img src=\"" + pictures[0] + "\" style=\"max-height: 400px; max-width: 300px; border-style: inset; border-width: 4px;\" />";
-    
+    if(pictures[0] != "")
+    {
+        document.getElementById("mainPic").innerHTML = "<img src=\"" + pictures[0] + "\" style=\"max-height: 400px; max-width: 300px; border-style: inset; border-width: 4px;\" />";
+    }
+    else
+    {
+        document.getElementById("mainPic").innerHTML = "No Photos Available";
+    }
+
     for(var i = 0; i < pictures.length; i++)
     {
-        if(pictures[i] != null)
+        if(pictures[i] != "")
         {
-            document.getElementById("morPic").innerHTML += "<img src=\"" + pictures[i] + "\" style=\"border-style: dotted; border-width: 2px; margin: 3px; max-height: 50px\" onclick=\"changeImage(\'" + pictures[i] + "\')\" />";
+            document.getElementById("morPic").innerHTML += "<img src=\"" + pictures[i] + "\" style=\"border-style: solid; border-width: 2px; margin: 3px; max-height: 50px\" onclick=\"changeImage(\'" + pictures[i] + "\')\" />";
         }
     }
 

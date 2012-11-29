@@ -1,2 +1,4 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<publishData />
+<publishData>
+  <publishProfile publishUrl="allium.arvixe.com" deleteExistingFiles="False" ftpAnonymousLogin="False" ftpPassiveMode="True" msdeploySite="www.youchewfood.com/temporar" msdeploySiteID="" msdeployRemoteSitePhysicalPath="" msdeployAllowUntrustedCertificate="True" msdeploySkipExtraFilesOnServer="True" msdeployMarkAsApp="False" profileName="Profile1" publishMethod="MSDeploy" replaceMatchingFiles="True" userName="ALLIUM/youchew_admin" savePWD="True" userPWD="AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAeQTVDXA91EO4/XlTCepBQAAAAAACAAAAAAADZgAAqAAAABAAAAD7L6tuAdd6PWnOTTMlGo2YAAAAAASAAACgAAAAEAAAAPN4XzjGbq0MsRgImIv33u8gAAAAG70IuVrkR8k8wF0a8+8erV4AwSvvZjdXy9G8HA60rBEUAAAAkOm9yyhQL4FEfMB5quRCSTDhB/s=" SelectedForPublish="True" />
+</publishData>
