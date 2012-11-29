@@ -160,7 +160,7 @@ textarea {
 
 body {
   margin: 0;
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: Calibri;
   font-size: 14px;
   line-height: 20px;
   color: #333333;
@@ -655,6 +655,8 @@ h6 small {
 h1 {
   font-size: 36px;
   line-height: 40px;
+  font-family: Impact;
+  color: Maroon;
 }
 
 h2 {
@@ -5740,7 +5742,6 @@ a.badge:hover {
   font-size: 60px;
   line-height: 1;
   letter-spacing: -1px;
-  color: inherit;
 }
 
 .hero-unit p {
