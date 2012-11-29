@@ -41,7 +41,7 @@
 <div style="float: right" class="my-box">
     <table>
         <tr>
-            <td style="height: 300px">
+            <td style="height: 410px; width: 310px">
                 <div id="mainPic" style="text-align:center;"></div>
             </td>
         </tr>
@@ -62,16 +62,19 @@
     var picStr = "@Model.icon";
     var pictures = picStr.split(",");
 
-    document.getElementById("mainPic").innerHTML = "<img src=\"" + pictures[0] + "\" width=\"300px\" />";
+    document.getElementById("mainPic").innerHTML = "<img src=\"" + pictures[0] + "\" style=\"max-height: 400px; max-width: 300px; border-style: inset; border-width: 4px;\" />";
     
     for(var i = 0; i < pictures.length; i++)
     {
-        document.getElementById("morPic").innerHTML += "<img src=\"" + pictures[i] + "\" width=\"50px\" height=\"50px\" onclick=\"changeImage(\'" + pictures[i] + "\')\" />";
+        if(pictures[i] != null)
+        {
+            document.getElementById("morPic").innerHTML += "<img src=\"" + pictures[i] + "\" style=\"border-style: dotted; border-width: 2px; margin: 3px; max-height: 50px\" onclick=\"changeImage(\'" + pictures[i] + "\')\" />";
+        }
     }
 
     function changeImage(url)
     {
-        document.getElementById("mainPic").innerHTML = "<img src=\"" + url + "\" width=\"300px\" />";
+        document.getElementById("mainPic").innerHTML = "<img src=\"" + url + "\" style=\"max-height: 400px; max-width: 300px; border-style: inset; border-width: 4px;\" />";
     }
     
     // Create the Map
